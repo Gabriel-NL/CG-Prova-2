@@ -1,0 +1,38 @@
+Magia: 
+-Igneus
+Modo de disparo:
+-Lança chamas em cone
+Dano
+-10 em curto, 5 em médio, 
+Cadência
+-4 tiques de dano por segundo
+Precisão
+
+Alcance
+-Curto
+
+
+Padrão: 
+
+
+
+No round 10 tem 80
+Se a cada segundo dá 40 de dano, então no round 10 ela mata em 2 segundos. 
+
+
+
+
+
+Alcance curto:
+-Dentro de 1 metro
+
+Alcance médio:
+-Dentro de 6 metros
+
+Alcance longo:
+-Dentro de 12 metros
+
+7 segundos, 40 balas= 5,7 projeteis por segundo (lento)
+ 3 segundos, 40 balas = 13,3 projeteis por segundo (rapido)
+9 segundos, 10 balas = +- 1 bala por segundo 
+
