@@ -10,13 +10,13 @@ public class barrahps : MonoBehaviour //aqui está um sistema com barra de hp do
 
         void Start ()
         {
-             hpplayer = GameObject.FindGameObjectWithTag("Player").GetComponent<hpplayer>();
+             //hpplayer = GameObject.FindGameObjectWithTag("Player").GetComponent<hpplayer>();
 
         }
 
         void Update ()
         {
-            healthBar.value = hpplayer.health;
+            //healthBar.value = hpplayer.health;
 
         }
 

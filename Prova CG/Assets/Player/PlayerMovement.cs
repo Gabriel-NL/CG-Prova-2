@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float velocidade = 5;
     public float velocidade_de_corrida=10;
     public KeyCode tecla_de_corrida= KeyCode.LeftShift;
-    public Animator anim;
+    //public Animator anim;
 
     private Rigidbody rb;
     public float velocidade_atual;
@@ -32,18 +32,18 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetKey(tecla_de_corrida))
             {
-                anim.SetBool("run", true);
+                //anim.SetBool("run", true);
                 velocidade_atual = velocidade_de_corrida;
             }
             else
             {
-                anim.SetBool("run", false);
+                //anim.SetBool("run", false);
                 velocidade_atual = velocidade;
             }
         }
         else
         {
-            anim.SetBool("run", false);
+            //anim.SetBool("run", false);
             velocidade_atual = velocidade;
         }
   
