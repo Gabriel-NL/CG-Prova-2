@@ -13,7 +13,8 @@ public class AmmunitionShow : MonoBehaviour //sistema de munição, a munição 
     // Start is called before the first frame update
     void Start()
     {
-        
+        municao = 80;
+        atirando = false;
     }
 
     // Update is called once per frame
