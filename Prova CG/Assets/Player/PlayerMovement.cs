@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float velocidade = 5;
-    public float velocidade_de_corrida=10;
+    public float velocidade_de_corrida=50;
     public KeyCode tecla_de_corrida= KeyCode.LeftShift;
     public Animator anim;
 
