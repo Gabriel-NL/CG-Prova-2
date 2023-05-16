@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class PlayerMovement : MonoBehaviour
 {
     public float velocidade = 5;
@@ -9,14 +11,16 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode tecla_de_corrida= KeyCode.LeftShift;
     public Animator anim;
 
-    private Rigidbody rb;
+    public Rigidbody rb;
     public float velocidade_atual;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+ 
         velocidade_atual=velocidade;
     }
 
@@ -30,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
 
-            if (Input.GetKey(tecla_de_corrida))
+            if (Input.GetKeyDown(tecla_de_corrida))
             {
                 anim.SetBool("run", true);
                 velocidade_atual = velocidade_de_corrida;
@@ -46,7 +50,13 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("run", false);
             velocidade_atual = velocidade;
         }
-  
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * 300); ;
+        }
+
+
 
 
     }
