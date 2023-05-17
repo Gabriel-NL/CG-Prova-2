@@ -5,6 +5,7 @@ using UnityEngine;
 public class projetilcollider : MonoBehaviour // sistema para colisão de projéteis e o seu impacto
 {
     public GameObject impactoVFX;
+    public AudioSource audioPlayer;
    
     private bool collided;
     void OnCollisionEnter(Collision co)
@@ -18,6 +19,9 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
             Destroy (impact, 2);
 
             Destroy (gameObject);   
+            audioPlayer.Play();
+
+            
         }
     }
 
