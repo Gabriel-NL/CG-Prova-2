@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class projetilcollider : MonoBehaviour
+public class projetilcollider : MonoBehaviour // sistema para colisão de projéteis
 {
     private bool collided;
     void OnCollisionEnter(Collision co)

@@ -8,8 +8,11 @@ public class fpsprojectile : MonoBehaviour
     public GameObject projectile;
     public Transform RHFirePoint;
     public float projectileSpeed = 30;
+    public float fireRate = 4;
+    public float arcRange = 1;
 
     private Vector3 destination;
+    private float tempotiro;
     
     
     void Start()
@@ -22,6 +25,7 @@ public class fpsprojectile : MonoBehaviour
     {
         if(Input.GetButtonDown("Fire1"))
         {
+            tempotiro = Time.time + 1/fireRate;
             ShootProjectile();
         }
 
@@ -44,6 +48,8 @@ public class fpsprojectile : MonoBehaviour
       {
         var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity ) as GameObject;
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+
+        iTween.PunchPosition(projectileObj, new Vector3 (Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange),0), Random.Range(0.5f,2));
     }
 }
 }
