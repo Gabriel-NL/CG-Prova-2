@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float velocidade = 5;
+    public float velocidade = 10;
     public float velocidade_de_corrida=50;
     public KeyCode tecla_de_corrida= KeyCode.LeftShift;
     public Animator anim;
@@ -30,6 +30,11 @@ public class PlayerMovement : MonoBehaviour
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(Vector3.up * 50); ;
+        }
+
         if (inputX != 0 || inputZ != 0) 
         {
             transform.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
@@ -51,10 +56,7 @@ public class PlayerMovement : MonoBehaviour
             velocidade_atual = velocidade;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector3.up * 300); ;
-        }
+
 
 
 

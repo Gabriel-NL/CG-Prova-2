@@ -16,7 +16,7 @@ public class barrahps : MonoBehaviour //aqui está um sistema com barra de hp do
 
         void Update ()
         {
-            healthBar.value = hpplayer.health;
+             //healthBar.value = hpplayer.health;
 
         }
 
