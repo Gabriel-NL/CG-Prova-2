@@ -4638,19 +4638,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contagem: 10
+  spawnPoint: {fileID: 2098572761}
   waves:
   - enemies:
     - {fileID: 1413457334}
     - {fileID: 1413457334}
     - {fileID: 1413457334}
-  - enemies:
-    - {fileID: 1413457334}
-    - {fileID: 1413457334}
-    - {fileID: 1413457334}
-  - enemies:
-    - {fileID: 1413457334}
-    - {fileID: 1413457334}
-    - {fileID: 1413457334}
+    timeToNextEnemy: 5
+    timeToNextWave: 60
 --- !u!1 &1852160780
 GameObject:
   m_ObjectHideFlags: 0
