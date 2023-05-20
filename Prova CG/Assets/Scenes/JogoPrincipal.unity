@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 45cf4997dd2f0184086a8ddfc57ebd5f, type: 2}
 --- !u!1 &19077048
 GameObject:
   m_ObjectHideFlags: 0
@@ -3562,6 +3562,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3179bfab49198d14abaf564c3fc5f9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &1413457338
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413457328}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 2.29341
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2.5
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4.744192
+  m_BaseOffset: 2.372096
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &1413457339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413457328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9ccf43e008a5bd46b9843832465508d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 1413457338}
+  Player: {fileID: 721506447}
 --- !u!1 &1442267483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,7 +4653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849420186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 76.24078, y: 4.492791, z: 13.709278}
+  m_LocalPosition: {x: 75.65, y: 4, z: 33.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4646,6 +4682,7 @@ MonoBehaviour:
     - {fileID: 1413457334}
     timeToNextEnemy: 5
     timeToNextWave: 60
+    enemiesLeft: 0
 --- !u!1 &1852160780
 GameObject:
   m_ObjectHideFlags: 0
