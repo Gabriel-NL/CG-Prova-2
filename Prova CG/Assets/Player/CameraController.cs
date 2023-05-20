@@ -24,7 +24,7 @@ public class CameraController : MonoBehaviour
         
         velocidade_frame = Vector2.Lerp(velocidade_frame, raw_velocidade_frame, 1 / suavizacao);
         velocidade_rotacao += velocidade_frame;
-        velocidade_rotacao.y = Mathf.Clamp(velocidade_rotacao.y, -90, 90);
+        velocidade_rotacao.y = Mathf.Clamp(velocidade_rotacao.y, -80, 80);
 
         transform.localRotation = Quaternion.AngleAxis(-velocidade_rotacao.y, Vector3.right);
         player_transform.localRotation=Quaternion.AngleAxis(velocidade_rotacao.x,Vector3.up);
