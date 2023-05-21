@@ -12,14 +12,13 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
     {
         if(co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player")
         {
+            audioPlayer.Play();
             collided = true;
 
             var impact = Instantiate (impactoVFX, co.contacts[0].point, Quaternion.identity) as GameObject;
 
             Destroy (impact, 2);
-
             Destroy (gameObject);   
-            audioPlayer.Play();
 
             
         }

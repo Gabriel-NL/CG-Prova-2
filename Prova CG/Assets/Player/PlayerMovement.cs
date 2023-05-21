@@ -37,22 +37,24 @@ public class PlayerMovement : MonoBehaviour
 
         if (inputX != 0 || inputZ != 0) 
         {
+            anim.SetBool("moving", true);
             transform.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
 
             if (Input.GetKeyDown(tecla_de_corrida))
             {
-                anim.SetBool("run", true);
+                anim.SetBool("running", true);
                 velocidade_atual = velocidade_de_corrida;
             }
             else
             {
-                anim.SetBool("run", false);
+                anim.SetBool("running", false);
                 velocidade_atual = velocidade;
             }
         }
         else
         {
-            anim.SetBool("run", false);
+            anim.SetBool("moving", false);
+            anim.SetBool("running", false);
             velocidade_atual = velocidade;
         }
 
