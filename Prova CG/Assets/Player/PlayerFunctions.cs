@@ -2,35 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class PlayerMovement : MonoBehaviour
+public class PlayerFunctions : MonoBehaviour
 {
-    public float velocidade = 10;
-    public float velocidade_de_corrida=50;
-    public KeyCode tecla_de_corrida= KeyCode.LeftShift;
-    public Animator anim;
+    
+    //Keys
+    public KeyCode tecla_de_corrida = KeyCode.LeftShift;
 
-    public Rigidbody rb;
+    // Variables for movement System
+    public float velocidade = 10;
+    public float velocidade_de_corrida = 50;
     public float velocidade_atual;
 
 
+    //Components for movement System
+    public Animator anim;
+    public Rigidbody rb;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
- 
-        velocidade_atual=velocidade;
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        PlayerMove();
-    }
-
-    void PlayerMove() 
+    //Function that handles movement System
+    void PlayerMovementSystem()
     {
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
@@ -64,4 +53,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    //Variables for movement System
+    public Transform player_transform;
+    private float sensibilidade = 5;
+    private float suavizacao = 1.5f;
+    private Vector2 velocidade_frame, velocidade_rotacao;
+
+
 }

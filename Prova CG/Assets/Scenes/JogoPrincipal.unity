@@ -2819,7 +2819,7 @@ GameObject:
   - component: {fileID: 1198704682}
   - component: {fileID: 1198704683}
   m_Layer: 0
-  m_Name: Inimigo(Fallen)
+  m_Name: Fallen(Inimigo)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2858,7 +2858,13 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+    'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+    'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
+    'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tand more ...\n\tFrom animation
+    clip 'Idle_animation_Fallen'\n\tFrom animation clip 'Walk_animation_Fallen'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -9915,7 +9921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 777c13da74d5b884799fcad44f490826, type: 3}
       propertyPath: m_Name
-      value: Player_Mixamo
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1082271958561512970, guid: 777c13da74d5b884799fcad44f490826, type: 3}
       propertyPath: m_Name
@@ -10165,7 +10171,6 @@ GameObject:
   - component: {fileID: 2014924503}
   - component: {fileID: 2014924506}
   - component: {fileID: 2014924505}
-  - component: {fileID: 2014924507}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -10353,20 +10358,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014924498}
   m_Mesh: {fileID: 4711208715938537054, guid: 6f5dedd085c5da148a4ef049599338a2, type: 3}
---- !u!136 &2014924507
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014924498}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 1000
-  m_Height: 1000
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2044242863
 GameObject:
   m_ObjectHideFlags: 0
