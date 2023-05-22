@@ -12,6 +12,7 @@ public class AmmunitionShow : MonoBehaviour //sistema de munição, a munição 
     public int municao;
     public bool atirando;
     public TMP_Text mostrarMunicao;
+    public GameObject peanut;
     
     // Start is called before the first frame update
     void Start()
@@ -32,5 +33,13 @@ public class AmmunitionShow : MonoBehaviour //sistema de munição, a munição 
                atirando = false;
         }
         
+    }
+    void OnTriggerEnter(Collider peanut)
+    {
+        if(peanut.gameObject.tag == "Ammo")
+        {
+            municao = 80;
+            Destroy(peanut.gameObject);
+        }
     }
 }
