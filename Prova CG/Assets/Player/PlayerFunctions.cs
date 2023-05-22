@@ -1,63 +1,117 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerFunctions : MonoBehaviour
 {
-    
-    //Keys
+    //Teclas
     public KeyCode tecla_de_corrida = KeyCode.LeftShift;
 
-    // Variables for movement System
+    //Variaveis para sistema de movimento
     public float velocidade = 10;
     public float velocidade_de_corrida = 50;
     public float velocidade_atual;
 
-
-    //Components for movement System
-    public Animator anim;
+    //Componentes para sistema de movimento
+    //public Animator anim;
     public Rigidbody rb;
 
-    //Function that handles movement System
-    void PlayerMovementSystem()
+    /*---------------------------------------------*/
+
+    //Variaveis para sistema de municao
+    public bool atirando = false;
+
+    //Componentes para sistema de municao
+    public PlayerData pd= PlayerData.Instance;
+    public TMP_Text mostrarMunicao;
+
+
+    /*---------------------------------------------*/
+    //Variaveis para sistema de pulo
+    public bool grounded = false;
+    public int jumpforce;
+    public int gravityForce;
+
+
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    void FixedUpdate()
+    {
+        PlayerMovementSystem();
+        PlayerAmmoSystem();
+    }
+
+    private void OnCollisionEnter(Collision c)
+    {
+
+        if (c.gameObject.tag=="GroundTag")
+        {
+            grounded = true;
+            
+        }
+    }
+    private void OnCollisionExit(Collision c)
+    {
+        if (c.gameObject.tag == "GroundTag")
+        {
+            grounded = false;
+
+        }
+    }
+
+
+    //Funcao que gerencia sistema de movimento
+    public void PlayerMovementSystem()
     {
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) && grounded)
         {
-            rb.AddForce(Vector3.up * 50); ;
+            rb.AddForce(Vector3.up * jumpforce); 
         }
 
         if (inputX != 0 || inputZ != 0)
         {
-            anim.SetBool("moving", true);
+            //anim.SetBool("moving", true);
             transform.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
 
             if (Input.GetKeyDown(tecla_de_corrida))
             {
-                anim.SetBool("running", true);
+                //anim.SetBool("running", true);
                 velocidade_atual = velocidade_de_corrida;
             }
             else
             {
-                anim.SetBool("running", false);
+                //anim.SetBool("running", false);
                 velocidade_atual = velocidade;
             }
         }
         else
         {
-            anim.SetBool("moving", false);
-            anim.SetBool("running", false);
+            //anim.SetBool("moving", false);
+            //anim.SetBool("running", false);
             velocidade_atual = velocidade;
         }
 
+        rb.AddForce(Vector3.down * gravityForce);
+
     }
-    //Variables for movement System
-    public Transform player_transform;
-    private float sensibilidade = 5;
-    private float suavizacao = 1.5f;
-    private Vector2 velocidade_frame, velocidade_rotacao;
 
-
+    //Funcao que gerencia sistema de municao
+    public void PlayerAmmoSystem()
+    {
+        mostrarMunicao.text = "Cargas: " + pd.getCargas().ToString();
+        if (Input.GetMouseButtonDown(0) && !atirando && pd.getCargas() > 0)
+        {
+            atirando = true;
+            pd.consumirCarga();
+            atirando = false;
+        }
+    }
 }
+

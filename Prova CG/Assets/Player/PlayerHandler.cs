@@ -7,13 +7,5 @@ public class PlayerHandler : MonoBehaviour
 
     public PlayerFunctions pc;
 
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    void Update()
-    {
-        pc.PlayerMovementSystem();
-    }
+    
 }

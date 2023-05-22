@@ -6,26 +6,34 @@ public class PlayerData : MonoBehaviour
 {
     private int vida;
     private int cargas;
+    private static PlayerData instance;
 
-    private PlayerData[] dadosDoJogador = new PlayerData[1];
 
-    void Start()
+    public PlayerData()
     {
-        dadosDoJogador[0] = new PlayerData
+        this.vida = 3;
+        this.cargas = 5;
+    }
+    public static PlayerData Instance
+    {
+        get
         {
-            vida = 3,
-            cargas = 5
-        };
+            if (instance == null)
+            {
+                instance = new PlayerData();
+            }
+            return instance;
+        }
     }
 
     public void consumirCarga()
     {
-        dadosDoJogador[0].cargas--;
+        this.cargas--;
     }
 
     public int getCargas()
     {
-        return dadosDoJogador[0].cargas;
+        return this.cargas;
     }
 }
 
