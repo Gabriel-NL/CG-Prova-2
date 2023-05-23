@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: f54635647cc487b4fb67286b9469b35e
+guid: 71d9d219559944647ad8b174aeeece4c
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MaterialQuadriculado
+    second: {fileID: 2100000, guid: 94b2091060c4505479854f1767793fb9, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
