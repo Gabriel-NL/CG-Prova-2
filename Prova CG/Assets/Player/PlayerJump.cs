@@ -1,16 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class PlayerJump : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    public float jumpForce;
-    public float jumpCooldownDuration;
+    public float jumpSpeed;
 
     private CharacterController characterController;
+    private float ySpeed;
     private float originalStepOffset;
-    private bool canJump = true;
 
     void Start()
     {
@@ -23,21 +24,20 @@ public class PlayerJump : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
+        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
+        float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
+        movementDirection.Normalize();
 
-        if (movementDirection != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-        }
+        ySpeed += Physics.gravity.y * Time.deltaTime;
 
         if (characterController.isGrounded)
         {
             characterController.stepOffset = originalStepOffset;
+            ySpeed = -0.5f;
 
-            if (canJump && Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump"))
             {
-                StartCoroutine(JumpCoroutine());
+                ySpeed = jumpSpeed;
             }
         }
         else
@@ -45,18 +45,16 @@ public class PlayerJump : MonoBehaviour
             characterController.stepOffset = 0;
         }
 
-        Vector3 movement = movementDirection * speed;
-        movement.y = Physics.gravity.y;
-        characterController.Move(movement * Time.deltaTime);
-    }
+        Vector3 velocity = movementDirection * magnitude;
+        velocity.y = ySpeed;
 
-    IEnumerator JumpCoroutine()
-    {
-        canJump = false;
-        characterController.Move(Vector3.up * jumpForce * Time.deltaTime);
+        characterController.Move(velocity * Time.deltaTime);
 
-        yield return new WaitForSeconds(jumpCooldownDuration);
+        if (movementDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
 
-        canJump = true;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 }

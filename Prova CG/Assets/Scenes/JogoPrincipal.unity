@@ -3596,6 +3596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3179bfab49198d14abaf564c3fc5f9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 25
+  prox: 1
 --- !u!195 &1413457338
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -10293,6 +10295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3179bfab49198d14abaf564c3fc5f9de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  prox: 0
 --- !u!1 &2044242863
 GameObject:
   m_ObjectHideFlags: 0
