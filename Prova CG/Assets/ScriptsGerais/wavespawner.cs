@@ -38,7 +38,7 @@ public class wavespawner : MonoBehaviour
 [System.Serializable]
  public class Wave
 {
-    public Fallen_bot[] enemies;
+    public FallenBot[] enemies;
     public float timeToNextEnemy;
     public float timeToNextWave;
 }
