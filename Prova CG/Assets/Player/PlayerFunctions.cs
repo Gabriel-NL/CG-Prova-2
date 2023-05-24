@@ -109,7 +109,7 @@ public class PlayerFunctions : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !atirando && pd.getCargas() > 0)
         {
             atirando = true;
-            pd.consumirCarga();
+            
             atirando = false;
         }
     }

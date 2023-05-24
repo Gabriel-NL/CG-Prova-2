@@ -28,7 +28,7 @@ public class PlayerData : MonoBehaviour
 
     public void consumirCarga()
     {
-        this.cargas--;
+        this.cargas= this.cargas - 1;
     }
 
     public int getCargas()

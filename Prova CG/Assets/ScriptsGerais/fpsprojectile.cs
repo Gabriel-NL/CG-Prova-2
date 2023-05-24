@@ -27,6 +27,7 @@ public class fpsprojectile : MonoBehaviour
         if(Input.GetButtonDown("Fire1") && pd.getCargas()>0)
         {
             tempotiro = Time.time + 1/fireRate;
+            pd.consumirCarga();
             ShootProjectile();
         }
 

@@ -17,10 +17,11 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
 
             var impact = Instantiate (impactoVFX, co.contacts[0].point, Quaternion.identity) as GameObject;
 
+            /*
+
+             */
             Destroy (impact, 2);
             Destroy (gameObject);   
-
-            
         }
     }
 
