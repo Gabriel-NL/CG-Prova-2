@@ -14,7 +14,7 @@ public class fpsprojectile : MonoBehaviour
     private Vector3 destination;
     private float tempotiro;
 
-    public PlayerData pd = PlayerData.Instance;
+    public PlayerData pd;
 
     void Start()
     {
@@ -24,10 +24,12 @@ public class fpsprojectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Fire1") && pd.getCargas()>0)
+        
+        if (Input.GetButtonDown("Fire1") && pd.getCargas()>0)
         {
             tempotiro = Time.time + 1/fireRate;
             pd.consumirCarga();
+
             ShootProjectile();
         }
 

@@ -7,19 +7,15 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
     public GameObject impactoVFX;
     public AudioSource audioPlayer;
    
-    private bool collided;
+
     void OnCollisionEnter(Collision co)
     {
         if(co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player")
         {
             audioPlayer.Play();
-            collided = true;
 
             var impact = Instantiate (impactoVFX, co.contacts[0].point, Quaternion.identity) as GameObject;
 
-            /*
-
-             */
             Destroy (impact, 2);
             Destroy (gameObject);   
         }
