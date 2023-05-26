@@ -7,16 +7,20 @@ public class Controlador : MonoBehaviour
 {
     /*---------------------------------------------*/
     //Pegando instancias
-    private VerCargas classe_ver_cargas = VerCargas.Instance;
+    private UI classe_user_interface = UI.Instance;
     private Vida_morte classe_vida_morte = Vida_morte.Instance;
     private Movimento classe_movimento = Movimento.Instance;
 
     /*---------------------------------------------*/
     //Pegando objetos
     public TMP_Text objetoMunicao;
+    public TMP_Text objetoPontos;
+    public TMP_Text objetoHorda;
+
     public GameObject imagemDano;
     public GameObject player;
     public PlayerData pd;
+    public Horda horda;
 
     /*---------------------------------------------*/
 
@@ -35,8 +39,9 @@ public class Controlador : MonoBehaviour
         if (classe_vida_morte.PlayerVivo())
         {
             classe_movimento.PlayerMovementSystem();
-            classe_ver_cargas.PlayerAmmoSystem(objetoMunicao,pd);
-
+            classe_user_interface.PlayerAmmoSystem(objetoMunicao,pd);
+            classe_user_interface.PointSystem(objetoPontos, pd);
+            classe_user_interface.RoundSystem(objetoHorda, horda);
         }
     }
 

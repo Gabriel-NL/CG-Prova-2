@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
     private int vida;
+    private int pontosDeDevocao;
     private int cargas;
     private bool playerVivo=true;
     public static PlayerData instance;
@@ -36,6 +37,15 @@ public class PlayerData : MonoBehaviour
     public int getCargas()
     {
         return this.cargas;
+    }
+
+    public void acertouTiro(int quantia_pontos)
+    {
+        this.pontosDeDevocao = this.pontosDeDevocao + quantia_pontos;
+    }
+    public int getPontosDevocao()
+    {
+        return this.pontosDeDevocao;
     }
 
     public void tomouDano()

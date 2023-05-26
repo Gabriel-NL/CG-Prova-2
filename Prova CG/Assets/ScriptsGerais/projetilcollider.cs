@@ -6,11 +6,23 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
 {
     public GameObject impactoVFX;
     public AudioSource audioPlayer;
+    public PlayerData pd= PlayerData.Instance;
+
    
 
     void OnCollisionEnter(Collision co)
     {
-        if(co.gameObject.tag != "Bullet" && co.gameObject.tag != "Player")
+        if (co.gameObject.tag == "EnemyTag")
+        {
+            pd.acertouTiro(20);
+            audioPlayer.Play();
+
+            var impact = Instantiate(impactoVFX, co.contacts[0].point, Quaternion.identity) as GameObject;
+
+            Destroy(impact, 2);
+            Destroy(gameObject);
+        }
+        if (co.gameObject.tag == "WallTags" || co.gameObject.tag == "GroundTag")
         {
             audioPlayer.Play();
 
