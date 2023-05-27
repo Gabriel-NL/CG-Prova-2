@@ -12,42 +12,74 @@ public class Controlador : MonoBehaviour
     /*---------------------------------------------*/
     //Pegando instancias
     private UI classe_user_interface = UI.Instance;
-    private Vida_morte classe_vida_morte = Vida_morte.Instance;
     private Movimento classe_movimento = Movimento.Instance;
+    private Visao classe_visao = Visao.Instance;
+
 
     /*---------------------------------------------*/
     //Pegando objetos
     public TMP_Text objetoMunicao;
     public TMP_Text objetoPontos;
     public TMP_Text objetoHorda;
-
-    public GameObject imagemDano;
+    
     public GameObject player;
+    public GameObject camera;
+    public GameObject ferimento;
+
+    public Animator cameraAnimator;
+
     public PlayerData pd;
     public Horda horda;
-    public AudioSource audioPlayer;
 
     /*---------------------------------------------*/
+
+        private KeyCode tecla_de_ferimento = KeyCode.Tab;
+        private bool dying = false;
+    /*---------------------------------------------*/
+
+
+
 
     //Função que ocorre toda vez que o jogo é iniciado
     void Start()
     {
-        
-        classe_vida_morte.setObject(imagemDano);
-        classe_movimento.setObject(player);
-        classe_movimento.Debugando();
+            Cursor.lockState = CursorLockMode.Locked;
     }
 
     //Função que ocorre á cada segundo
     void FixedUpdate()
     {
+        classe_user_interface.HealthSystem(ferimento, pd);
         if (pd.playerState())
         {
-            classe_movimento.PlayerMovementSystem();
+            classe_movimento.PlayerMovementSystem(player);
             classe_user_interface.PlayerAmmoSystem(objetoMunicao,pd);
             classe_user_interface.PointSystem(objetoPontos, pd);
             classe_user_interface.RoundSystem(objetoHorda, horda);
         }
+
+
+    }
+
+    void Update()
+    {
+            
+            if (pd.playerState())
+            {
+                classe_visao.CameraSystem(player.transform,camera.transform);
+                if (Input.GetKeyUp(tecla_de_ferimento))
+                {
+                    pd.tomouDano();
+                }
+
+            }
+            else
+            {
+                    cameraAnimator.SetBool("dead",true);
+            }
+
+
+
     }
 
     private void OnCollisionEnter(Collision c)
@@ -62,7 +94,7 @@ public class Controlador : MonoBehaviour
 
         if (c.gameObject.tag == "EnemyTag")
         {
-            StartCoroutine(classe_vida_morte.IntervaloParatestes());
+           
 
         }
     }
@@ -82,11 +114,6 @@ public class Controlador : MonoBehaviour
 
         }
     }
-
-        public void Ativado()
-        {
-            //audioPlayer.Play();
-        }
 
 
     }

@@ -9,9 +9,7 @@ public class Movimento : MonoBehaviour
 
     //Componentes
     private GameObject player;
-    private Rigidbody playerRB;
-    private Animator playerANIM;
-    private Transform playerTRANS;
+
 
     //Teclas
     private KeyCode tecla_de_corrida = KeyCode.LeftShift;
@@ -43,15 +41,7 @@ public class Movimento : MonoBehaviour
     {
         this.grounded = grounded;
     }
-    
-    public void setObject(GameObject gm)
-    {
-        this.player = gm; 
-        playerRB = player.GetComponent<Rigidbody>();
-        playerANIM = player.GetComponent<Animator>();
-        playerTRANS = player.transform;
-    }
-
+  
     // Start is called before the first frame update
     public void Debugando()
     {
@@ -66,12 +56,15 @@ public class Movimento : MonoBehaviour
     }
 
     //Funcao que gerencia sistema de movimento
-    public void PlayerMovementSystem()
+    public void PlayerMovementSystem(GameObject player)
     {
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
 
-        
+        Rigidbody playerRB= player.GetComponent<Rigidbody>();
+        Animator playerANIM = player.GetComponent<Animator>();
+        Transform playerTRANS=player.transform;
+
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {

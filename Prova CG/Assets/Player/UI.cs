@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+
 
 public class UI : MonoBehaviour
 {
-    //Instancia
-    public static UI instance;
-
     //Variaveis
     private bool atirando = false;
     private int municao;
     private int pontos;
     private int horda;
+
+    //Instancia
+    public static UI instance;
 
     public static UI Instance
     {
@@ -51,5 +53,38 @@ public class UI : MonoBehaviour
         mostrarHorda.text = this.horda.ToString();
 
     }
+    public void HealthSystem(GameObject ferimento, PlayerData pd)
+    {
+        var image = ferimento.GetComponent<Image>();
+        
+        if (pd.getHP()==3)
+        {
+            var tempColor = image.color;
+            tempColor.a = 0;
+            image.color = tempColor;
+        }
+
+        if (pd.getHP() == 2)
+        {
+            var tempColor = image.color;
+            tempColor.a = 0.2f;
+            image.color = tempColor;
+        }
+        if (pd.getHP() == 1)
+        {
+            var tempColor = image.color;
+            tempColor.a = 0.5f;
+            image.color = tempColor;
+        }
+
+        if (pd.getHP() == 0)
+        {
+            var tempColor = image.color;
+            tempColor.a = 1f;
+            image.color = tempColor;
+        }
+
+    }
+
 
 }

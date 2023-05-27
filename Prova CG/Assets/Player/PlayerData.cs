@@ -51,6 +51,7 @@ public class PlayerData : MonoBehaviour
     public void tomouDano()
     {
         this.vida = this.vida - 1;
+        Debug.Log("Vida atual: "+ this.vida);
     }
 
     public int getHP()
