@@ -37,32 +37,6 @@ public class Vida_morte : MonoBehaviour
         canvasRI = imagemDano.GetComponent<RawImage>();
     }
 
-
-    public void PlayerHealthSystem()
-    {
-        if (pd.getHP() > 1)
-        {
-            pd.tomouDano();
-        }
-    }
-
-    public bool PlayerVivo()
-    {
-        if (pd.getHP() < 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    public void PlayerTomaDano()
-    {
-        pd.tomouDano();
-    }
-
     public IEnumerator IntervaloParatestes()
     {
         yield return new WaitForSeconds(2);

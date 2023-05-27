@@ -50,12 +50,7 @@ public class PlayerData : MonoBehaviour
 
     public void tomouDano()
     {
-        this.vida=this.vida - 1;
-        if (this.vida <= 0)
-        {
-            this.playerVivo = false;
-        }
-
+        this.vida = this.vida - 1;
     }
 
     public int getHP()
@@ -63,9 +58,17 @@ public class PlayerData : MonoBehaviour
         return this.vida;
     }
 
-    public bool playerDead() 
+    public bool playerState() 
     {
-        return playerVivo;
+        if (this.vida <= 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+
+        }
     }
 }
 

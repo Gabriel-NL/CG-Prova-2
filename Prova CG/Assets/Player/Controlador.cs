@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+namespace Player
+{
+
+
 public class Controlador : MonoBehaviour
 {
     /*---------------------------------------------*/
@@ -21,6 +25,7 @@ public class Controlador : MonoBehaviour
     public GameObject player;
     public PlayerData pd;
     public Horda horda;
+    public AudioSource audioPlayer;
 
     /*---------------------------------------------*/
 
@@ -36,7 +41,7 @@ public class Controlador : MonoBehaviour
     //Função que ocorre á cada segundo
     void FixedUpdate()
     {
-        if (classe_vida_morte.PlayerVivo())
+        if (pd.playerState())
         {
             classe_movimento.PlayerMovementSystem();
             classe_user_interface.PlayerAmmoSystem(objetoMunicao,pd);
@@ -77,4 +82,13 @@ public class Controlador : MonoBehaviour
 
         }
     }
+
+        public void Ativado()
+        {
+            //audioPlayer.Play();
+        }
+
+
+    }
+
 }
