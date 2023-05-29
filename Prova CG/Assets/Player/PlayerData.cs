@@ -9,6 +9,7 @@ public class PlayerData : MonoBehaviour
     private int cargas;
     private bool playerVivo=true;
     public static PlayerData instance;
+    public GameObject peanut;
 
 
     public PlayerData()
@@ -71,7 +72,15 @@ public class PlayerData : MonoBehaviour
 
         }
     }
-   
+    void OnTriggerEnter(Collider other)
+{
+    if (other.gameObject.CompareTag("Ammo"))
+    {
+        PlayerData.Instance.cargas += 50;
+        Destroy(other.gameObject);
+    }
 }
 
+
+}
 
