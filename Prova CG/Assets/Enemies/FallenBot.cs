@@ -1,25 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(UnityEngine.AI.NavMeshAgent))]
 
 public class FallenBot : MonoBehaviour
 {
 
 
     public GameObject player;
-    private UnityEngine.AI.NavMeshAgent navMesh;
     public bool grounded=false;
     public Rigidbody rb;
-
-    //Não usei essa função, mas se quiser edite a vontade
+    public float speed = 3.5f;
+    //Nï¿½o usei essa funï¿½ï¿½o, mas se quiser edite a vontade
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
-        navMesh = GetComponent<UnityEngine.AI.NavMeshAgent>();
+       
     }
 
-    //Quando tocar no chão, grounded se torna verdadeiro
+    //Quando tocar no chï¿½o, grounded se torna verdadeiro
     private void OnCollisionEnter(Collision c)
     {
 
@@ -30,7 +27,7 @@ public class FallenBot : MonoBehaviour
         }
     }
 
-    //Quando tocar no chão, grounded se torna falso
+    //Quando tocar no chï¿½o, grounded se torna falso
     private void OnCollisionExit(Collision c)
     {
         if (c.gameObject.tag == "GroundTag")
@@ -43,11 +40,12 @@ public class FallenBot : MonoBehaviour
     void Update()
     {
         //Aviso: Por algum motivo,
-        //Toda vez que a gravidade é aplicada no rigid body
+        //Toda vez que a gravidade ï¿½ aplicada no rigid body
         //O root motion para de funcionar
-        //Então criei um codigo que faz a gravidade ser aplicada
-        //Somente quando ele não tocar no chão
-        navMesh.destination = player.transform.position;
+        //Entï¿½o criei um codigo que faz a gravidade ser aplicada
+        //Somente quando ele nï¿½o tocar no chï¿½o
+        transform.LookAt(player.gameObject.transform);
+        transform.Translate(Vector3.forward * Time.deltaTime * speed);
         if (grounded==false)
         {
             rb.AddForce(Vector3.down * 30);

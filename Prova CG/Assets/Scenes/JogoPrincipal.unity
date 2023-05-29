@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4170,19 +4170,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004563947}
   m_Mesh: {fileID: -2432090755550338912, guid: 569b96b2b7302bc44bbaaa5cb7afa207, type: 3}
---- !u!65 &2004563954
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004563947}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.9, y: 4.8, z: 0.9}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2004563955
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4233,6 +4220,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peanut: {fileID: 0}
+--- !u!136 &2004563966
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004563947}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.29341
+  m_Height: 4.731494
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.0063490868, z: 0.10776201}
 --- !u!1 &2105412082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4424,7 +4425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 36.99948, y: 13.999939}
+  m_AnchoredPosition: {x: 36.999496, y: 13.999939}
   m_SizeDelta: {x: 200, y: 1}
   m_Pivot: {x: 1, y: 0}
 --- !u!95 &2141889487
@@ -5664,7 +5665,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8204707764321495519}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -29.18, y: 10.74, z: 77.4}
+  m_LocalPosition: {x: -86, y: -102, z: 223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5781,8 +5782,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 5465940246191943990}
   m_AABB:
-    m_Center: {x: -0.007468581, y: -0.48111105, z: 0.19663301}
-    m_Extent: {x: 2.3210359, y: 2.5189714, z: 0.71272194}
+    m_Center: {x: 16, y: 0, z: 48}
+    m_Extent: {x: 100000, y: 100000, z: 100000}
   m_DirtyAABB: 0
 --- !u!95 &8743813688601431709
 Animator:
@@ -5820,6 +5821,7 @@ MonoBehaviour:
   player: {fileID: 2004563947}
   grounded: 1
   rb: {fileID: 1787579558}
+  speed: 3.5
 --- !u!195 &8743813688601431711
 NavMeshAgent:
   m_ObjectHideFlags: 0
