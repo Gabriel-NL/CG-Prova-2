@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+
+
+
+    //Variaveis
     private int vida;
     private int pontosDeDevocao;
     private int cargas;
     private bool playerVivo=true;
+
+    //Inventario
+    private List<Estrutura> inventario = new List<Estrutura>();
+
+
+    //Instancia
     public static PlayerData instance;
+
+
     public GameObject peanut;
-
-
     public PlayerData()
     {
         this.vida = 3;
