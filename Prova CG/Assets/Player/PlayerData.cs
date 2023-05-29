@@ -76,7 +76,7 @@ public class PlayerData : MonoBehaviour
 {
     if (other.gameObject.CompareTag("Ammo"))
     {
-        PlayerData.Instance.cargas += 50;
+        this.cargas = 50;
         Destroy(other.gameObject);
     }
 }

@@ -44,7 +44,7 @@ public class Disparo : MonoBehaviour
 
     public void CastingSystem()
     {
-        if (Input.GetButtonDown("Fire1") && pd.getCargas() > 0)
+        if (Input.GetButton("Fire1") && pd.getCargas() > 0)
         {
             contador_disparo = Time.time + 1 / cadencia;
             pd.consumirCarga();
