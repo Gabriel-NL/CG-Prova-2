@@ -19,18 +19,38 @@ public class Disparo : MonoBehaviour
         }
     }
 
+    public GameObject projectile;
+    public Transform RHFirePoint;
+
     public float projectileSpeed = 30;
     public float cadencia = 4;
     public float arcRange = 1;
 
-
-    public GameObject projectile;
-    public Transform RHFirePoint;
     private Vector3 destination;
     private float cronometro;
+    private bool castingEnabled=false;
+
+    void FireRateLimiter()
+    {
+        //Se o intervalor acabar, ele pode disparar
+        if (this.cronometro > 0)
+        {
+            this.cronometro -= Time.deltaTime;
+        }
+        else
+        {
+
+
+
+        }
+    }
 
     public void CastingSystem(PlayerData pd, Camera cam)
     {
+
+
+
+
         if (Input.GetButton("Fire1") && pd.getCargas() > 0)
         {
             cronometro = Time.time + 1 / cadencia;
@@ -44,11 +64,18 @@ public class Disparo : MonoBehaviour
             else
                 destination = ray.GetPoint(1000);
 
-            var projectileObj = Instantiate(projectile, RHFirePoint.position, Quaternion.identity) as GameObject;
-            projectileObj.GetComponent<Rigidbody>().velocity = (destination - RHFirePoint.position).normalized * projectileSpeed;
-
-            iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
+            ProjectileSystem(RHFirePoint);
         }
     }
+
+    void ProjectileSystem(Transform firePoint)
+    {
+        var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
+        projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+
+        iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
+    }
+
+
 
 }
