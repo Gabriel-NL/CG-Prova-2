@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414735, b: 0.1210785, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -286,6 +286,7 @@ GameObject:
   - component: {fileID: 170932009}
   - component: {fileID: 170932010}
   - component: {fileID: 170932011}
+  - component: {fileID: 170932012}
   m_Layer: 0
   m_Name: ScriptGameManagement
   m_TagString: Untagged
@@ -333,6 +334,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peanut: {fileID: 0}
+--- !u!114 &170932012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170932007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67b08b10823ddf4bbd06447b5a77b47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magia_inicial_vfx: {fileID: 6544800293877804059}
+  magia_1_vfx: {fileID: 0}
+  magia_2_vfx: {fileID: 0}
+  magia_3_vfx: {fileID: 0}
 --- !u!1 &191018087
 GameObject:
   m_ObjectHideFlags: 0
@@ -4425,7 +4442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 36.999496, y: 13.999939}
+  m_AnchoredPosition: {x: 36.99948, y: 13.999939}
   m_SizeDelta: {x: 200, y: 1}
   m_Pivot: {x: 1, y: 0}
 --- !u!95 &2141889487
