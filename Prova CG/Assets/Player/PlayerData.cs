@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
 
-
-
     //Variaveis
     private int vida;
     private int pontosDeDevocao;
@@ -14,7 +12,9 @@ public class PlayerData : MonoBehaviour
     private bool playerVivo=true;
 
     //Inventario
-    private List<Estrutura> inventario = new List<Estrutura>();
+    private int current_spell;
+    int[] numbers = { 0, 0};
+    private List<Estrutura> magias_equipadas = new List<Estrutura>();
 
 
     //Instancia
@@ -83,14 +83,28 @@ public class PlayerData : MonoBehaviour
         }
     }
     void OnTriggerEnter(Collider other)
-{
-    if (other.gameObject.CompareTag("Ammo"))
     {
-        this.cargas = 50;
-        Destroy(other.gameObject);
+        if (other.gameObject.CompareTag("Ammo"))
+        {
+            this.cargas = 50;
+            Destroy(other.gameObject);
+        }
     }
-}
 
+    public void EquipamentoInicial(Estrutura magiaInicial)
+    {
+
+        magiaInicial.Usos = 45;
+        current_spell = 0;
+        numbers[current_spell] = 0;
+        magias_equipadas.Add(magiaInicial);
+
+    }
+
+    public Estrutura getCurrentSpellData()
+    {
+        return magias_equipadas[current_spell];
+    }
 
 }
 

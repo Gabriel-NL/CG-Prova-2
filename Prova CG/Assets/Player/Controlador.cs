@@ -14,7 +14,8 @@ public class Controlador : MonoBehaviour
     private UI classe_user_interface = UI.Instance;
     private Movimento classe_movimento = Movimento.Instance;
     private Visao classe_visao = Visao.Instance;
-
+    private Disparo classe_disparo = Disparo.Instance;
+    private TodasAsMagias todas_as_magias = TodasAsMagias.Instance;
 
     /*---------------------------------------------*/
     //Pegando objetos
@@ -25,16 +26,18 @@ public class Controlador : MonoBehaviour
     public GameObject player;
     public GameObject camera;
     public GameObject ferimento;
-
+    public GameObject firepoint;
     public Animator cameraAnimator;
 
     public PlayerData pd;
     public Horda horda;
+    public TodasAsMagias spellList;
 
     /*---------------------------------------------*/
 
-        private KeyCode tecla_de_ferimento = KeyCode.Tab;
-        private bool dying = false;
+    private Camera cam;
+    private KeyCode tecla_de_ferimento = KeyCode.Tab;
+    private bool dying = false;
     /*---------------------------------------------*/
 
 
@@ -44,6 +47,9 @@ public class Controlador : MonoBehaviour
     void Start()
     {
             Cursor.lockState = CursorLockMode.Locked;
+            cam = camera.GetComponent<Camera>();
+            pd.EquipamentoInicial(todas_as_magias.getMagia(0));
+            //classe_disparo.initialize(cam, firepoint.transform, pd.getCurrentSpellData());
     }
 
     //Função que ocorre á cada segundo
@@ -67,6 +73,8 @@ public class Controlador : MonoBehaviour
             if (pd.playerState())
             {
                 classe_visao.CameraSystem(player.transform,camera.transform);
+                //classe_disparo.CastingSystem(pd, cam, firepoint.transform);
+
                 if (Input.GetKeyUp(tecla_de_ferimento))
                 {
                     pd.tomouDano();

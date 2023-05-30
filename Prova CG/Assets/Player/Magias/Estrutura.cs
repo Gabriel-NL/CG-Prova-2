@@ -23,6 +23,8 @@ public class Estrutura
         this.Usos = usos;
         this.Vfx = vfx;
 
-}
+    }
+
+    
 
 }
