@@ -27,6 +27,8 @@ public class Controlador : MonoBehaviour
     public GameObject camera;
     public GameObject ferimento;
     public GameObject firepoint;
+        public GameObject projetil;//Provisorio
+
     public Animator cameraAnimator;
 
     public PlayerData pd;
@@ -49,7 +51,7 @@ public class Controlador : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             cam = camera.GetComponent<Camera>();
             pd.EquipamentoInicial(todas_as_magias.getMagia(0));
-            //classe_disparo.initialize(cam, firepoint.transform, pd.getCurrentSpellData());
+            
     }
 
     //Função que ocorre á cada segundo
@@ -73,7 +75,7 @@ public class Controlador : MonoBehaviour
             if (pd.playerState())
             {
                 classe_visao.CameraSystem(player.transform,camera.transform);
-                //classe_disparo.CastingSystem(pd, cam, firepoint.transform);
+                classe_disparo.CastingSystem(this.camera.GetComponent<Camera>(), projetil ,firepoint.transform,pd);
 
                 if (Input.GetKeyUp(tecla_de_ferimento))
                 {
@@ -86,9 +88,11 @@ public class Controlador : MonoBehaviour
                     cameraAnimator.SetBool("dead",true);
             }
 
+            
 
 
-    }
+
+        }
 
     private void OnCollisionEnter(Collision c)
     {

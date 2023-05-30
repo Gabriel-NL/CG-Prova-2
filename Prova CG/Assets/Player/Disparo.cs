@@ -18,57 +18,60 @@ public class Disparo : MonoBehaviour
             return instance;
         }
     }
-
-    public GameObject projectile;
+    //components
+    public Camera cam;
+    public GameObject projectile;//provisorio
     public Transform RHFirePoint;
 
+    //Variables
+    private float cronometro;
+    private Vector3 destination;
+
+    //Values
     public float projectileSpeed = 30;
-    public float cadencia = 4;
+    public float fireRate = 4;
     public float arcRange = 1;
 
-    private Vector3 destination;
-    private float cronometro;
-    private bool castingEnabled=false;
-
-    public void initialize(Camera cam, Transform firePoint, Estrutura spells)
+    public void CastingSystem(Camera cam, GameObject proj,Transform firePoint, PlayerData pd)
     {
+        this.cam = cam;
+        this.projectile = proj;
+        this.RHFirePoint = firePoint;
 
-    }
 
-    public void CastingSystem(PlayerData pd, Camera cam, Transform firePoint)
-    {
-        //Se o intervalor acabar, ele pode disparar
         if (this.cronometro > 0)
         {
             this.cronometro -= Time.deltaTime;
         }
         else
         {
-            this.RHFirePoint = firePoint;
-            if (Input.GetButton("Fire1") && pd.getCargas() > 0)
+            if (Input.GetKey(KeyCode.Mouse0) && pd.getCargas() > 0)
             {
-                cronometro = Time.time + 1 / cadencia;
+                cronometro = fireRate / 10;
                 pd.consumirCarga();
 
-                
-                Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-                RaycastHit hit;
-
-                if (Physics.Raycast(ray, out hit))
-                    destination = hit.point;
-                else
-                    destination = ray.GetPoint(1000);
-
-                ProjectileSystem();
+                HandleCasting();
             }
-
         }
-        
     }
 
-    void ProjectileSystem()
+    private void HandleCasting()
     {
-        var projectileObj = Instantiate(projectile, this.RHFirePoint.position, Quaternion.identity) as GameObject;
+        Ray ray = this.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        GameObject projectileObj;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            destination = hit.point;
+            //Debug.Log("Objeto atingido: " + hit.collider.gameObject.name);
+        }
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        projectileObj = Instantiate(this.projectile, this.RHFirePoint.position, Quaternion.identity);
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - this.RHFirePoint.position).normalized * projectileSpeed;
 
         iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));

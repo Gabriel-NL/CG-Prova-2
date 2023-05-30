@@ -25,7 +25,7 @@ public class PlayerData : MonoBehaviour
     public PlayerData()
     {
         this.vida = 3;
-        this.cargas = 50;
+        this.cargas = 500;
         
     }
     public static PlayerData Instance

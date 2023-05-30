@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class fpsprojectile : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class fpsprojectile : MonoBehaviour
     public Transform RHFirePoint;
     public float projectileSpeed = 30;
     public float fireRate = 4;
-    public float arcRange = 1;
+    public float arcRange = 10;
 
     private Vector3 destination;
     private float tempotiro;
@@ -18,42 +19,49 @@ public class fpsprojectile : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetButtonDown("Fire1") && pd.getCargas()>0)
+        if (this.tempotiro > 0)
         {
-            tempotiro = Time.time + 1/fireRate;
-            pd.consumirCarga();
-
-            ShootProjectile();
+            this.tempotiro -= Time.deltaTime;
         }
-
-        void ShootProjectile()
+        else
         {
-            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f,0.5f,0));
-            RaycastHit hit;
+            if (Input.GetKey(KeyCode.Mouse0) && pd.getCargas() > 0)
+            {
+                tempotiro =  fireRate/10;
+                pd.consumirCarga();
 
-            if(Physics.Raycast(ray, out hit))
-            destination = hit.point;
-            else
-                destination = ray.GetPoint(1000);
-            
-            InstantiateProjectile(RHFirePoint);    
+                ShootProjectile();
+            }
         }
-        
-        
-    
-      void InstantiateProjectile(Transform firePoint)
-      {
-        var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity ) as GameObject;
-        projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
-
-        iTween.PunchPosition(projectileObj, new Vector3 (Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange),0), Random.Range(0.5f,2));
     }
-}
+
+
+    void ShootProjectile()
+    {
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        GameObject projectileObj;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            destination = hit.point;
+            //Debug.Log("Objeto atingido: " + hit.collider.gameObject.name);
+        }
+        else
+        {
+            destination = ray.GetPoint(1000);
+        }
+
+        projectileObj = Instantiate(projectile, RHFirePoint.position, Quaternion.identity);
+        projectileObj.GetComponent<Rigidbody>().velocity = (destination - RHFirePoint.position).normalized * projectileSpeed;
+
+        iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
+    }
+
 }

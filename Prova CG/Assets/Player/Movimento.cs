@@ -41,19 +41,7 @@ public class Movimento : MonoBehaviour
     {
         this.grounded = grounded;
     }
-  
-    // Start is called before the first frame update
-    public void Debugando()
-    {
-        if (player != null)
-        {
-            Debug.Log("Player existe");
-        }
-        else
-        {
-            Debug.Log("Player nao existe");
-        }
-    }
+
 
     //Funcao que gerencia sistema de movimento
     public void PlayerMovementSystem(GameObject player)
