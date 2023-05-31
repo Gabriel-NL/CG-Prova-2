@@ -22,6 +22,7 @@ public class Controlador : MonoBehaviour
     public TMP_Text objetoMunicao;
     public TMP_Text objetoPontos;
     public TMP_Text objetoHorda;
+    public TMP_Text objetoNome;
     
     public GameObject player;
     public GameObject camera;
@@ -51,8 +52,9 @@ public class Controlador : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             cam = camera.GetComponent<Camera>();
             pd.EquipamentoInicial(todas_as_magias.getMagia(0));
-            
-    }
+            pd.EquipamentoInicial(todas_as_magias.getMagia(3));
+
+        }
 
     //Função que ocorre á cada segundo
     void FixedUpdate()
@@ -64,6 +66,8 @@ public class Controlador : MonoBehaviour
             classe_user_interface.PlayerAmmoSystem(objetoMunicao,pd);
             classe_user_interface.PointSystem(objetoPontos, pd);
             classe_user_interface.RoundSystem(objetoHorda, horda);
+            classe_user_interface.NameOfSpellSystem(objetoNome, pd);
+
         }
 
 
@@ -76,8 +80,8 @@ public class Controlador : MonoBehaviour
             {
                 classe_visao.CameraSystem(player.transform,camera.transform);
                 classe_disparo.CastingSystem(this.camera.GetComponent<Camera>(), projetil ,firepoint.transform,pd);
-
-                if (Input.GetKeyUp(tecla_de_ferimento))
+                classe_disparo.ChangeSpells(pd);
+                if (Input.GetKeyDown(tecla_de_ferimento))
                 {
                     pd.tomouDano();
                 }

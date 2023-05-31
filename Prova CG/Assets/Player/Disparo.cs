@@ -28,8 +28,7 @@ public class Disparo : MonoBehaviour
     private Vector3 destination;
 
     //Values
-    public float projectileSpeed = 30;
-    public float fireRate = 4;
+    public float projectileSpeed = 30; 
     public float arcRange = 1;
 
     public void CastingSystem(Camera cam, GameObject proj,Transform firePoint, PlayerData pd)
@@ -37,6 +36,8 @@ public class Disparo : MonoBehaviour
         this.cam = cam;
         this.projectile = proj;
         this.RHFirePoint = firePoint;
+
+
 
 
         if (this.cronometro > 0)
@@ -47,7 +48,8 @@ public class Disparo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && pd.getCargas() > 0)
             {
-                cronometro = fireRate / 10;
+                int fireRate = pd.getCurrentSpellData().Cadencia;
+                cronometro = 1f/fireRate;
                 pd.consumirCarga();
 
                 HandleCasting();
@@ -75,6 +77,18 @@ public class Disparo : MonoBehaviour
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - this.RHFirePoint.position).normalized * projectileSpeed;
 
         iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
+    }
+
+    public void ChangeSpells(PlayerData pd)
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            pd.SwitchSpells(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            pd.SwitchSpells(1);
+        }
     }
 
 

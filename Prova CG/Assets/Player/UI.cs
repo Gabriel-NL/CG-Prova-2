@@ -86,5 +86,11 @@ public class UI : MonoBehaviour
 
     }
 
+    public void NameOfSpellSystem(TMP_Text mostrarNome, PlayerData pd)
+    {
+        mostrarNome.text = pd.getCurrentSpellData().Nome;
+        
+    }
+
 
 }

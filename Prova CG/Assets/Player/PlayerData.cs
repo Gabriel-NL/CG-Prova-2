@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,6 @@ public class PlayerData : MonoBehaviour
 
     //Inventario
     private int current_spell;
-    int[] numbers = { 0, 0};
     private List<Estrutura> magias_equipadas = new List<Estrutura>();
 
 
@@ -42,12 +42,12 @@ public class PlayerData : MonoBehaviour
 
     public void consumirCarga()
     {
-        this.cargas= this.cargas - 1;
+        this.magias_equipadas[current_spell].Cargas--;
     }
 
     public int getCargas()
     {
-        return this.cargas;
+        return this.magias_equipadas[current_spell].Cargas;
     }
 
     public void acertouTiro(int quantia_pontos)
@@ -94,16 +94,49 @@ public class PlayerData : MonoBehaviour
     public void EquipamentoInicial(Estrutura magiaInicial)
     {
 
-        magiaInicial.Usos = 45;
+        magiaInicial.Cargas = 45;
         current_spell = 0;
-        numbers[current_spell] = 0;
         magias_equipadas.Add(magiaInicial);
 
     }
 
+    public void SwitchSpells(int chosenSpell)
+    {
+        switch (chosenSpell)
+        {
+            case 0:
+                this.current_spell = 0;
+                break;
+            case 1:
+                this.current_spell = 1;
+                break;
+            default:
+                break;
+        }
+
+
+        
+        if ( magias_equipadas[current_spell] == null)
+        {
+            this.current_spell = 0;
+            Debug.Log("Voce não tem outra magia!");
+
+        }
+    }
+
     public Estrutura getCurrentSpellData()
     {
-        return magias_equipadas[current_spell];
+
+        try
+        {
+            return magias_equipadas[this.current_spell];
+        }
+        catch (ArgumentOutOfRangeException ex)
+        {
+            Debug.Log("Voce não tem outra magia!");
+            this.current_spell = 0;
+            return magias_equipadas[this.current_spell];
+        }
     }
 
 }
