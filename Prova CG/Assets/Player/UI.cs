@@ -91,6 +91,9 @@ public class UI : MonoBehaviour
         mostrarNome.text = pd.getCurrentSpellData().Nome;
         
     }
-
+    public void InteractionMessageSystem(TMP_Text mostrarNome, PlayerData pd)
+    {
+        
+    }
 
 }
