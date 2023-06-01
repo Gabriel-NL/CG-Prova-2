@@ -6,6 +6,7 @@ public class Disparo : MonoBehaviour
 {
 
     public static Disparo instance;
+    public Animator animatorPlayer;
 
     public static Disparo Instance
     {
@@ -51,8 +52,12 @@ public class Disparo : MonoBehaviour
                 int fireRate = pd.getCurrentSpellData().Cadencia;
                 cronometro = 1f/fireRate;
                 pd.consumirCarga();
-
+                this.animatorPlayer.SetBool("shooting", true);
                 HandleCasting();
+            }
+            else
+            {
+                this.animatorPlayer.SetBool("shooting", false);
             }
         }
     }

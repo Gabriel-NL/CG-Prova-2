@@ -7,11 +7,17 @@ using TMPro;
 
 public class UI : MonoBehaviour
 {
+    //Componentes
+    public TMP_Text objetoMunicao;
+    public TMP_Text objetoPontos;
+    public TMP_Text objetoHorda;
+    public TMP_Text objetoNome;
+    public TMP_Text objetoInteracao;
+    public Image ferimento;
+
     //Variaveis
     private bool atirando = false;
-    private int municao;
-    private int pontos;
-    private int horda;
+    public string mensagem;
 
     //Instancia
     public static UI instance;
@@ -27,73 +33,48 @@ public class UI : MonoBehaviour
             return instance;
         }
     }
-
+    public void UIHandler(PlayerData pd,Horda horda)
+    {
+        objetoMunicao.text = "Cargas: " + pd.getCargas();
+        objetoPontos.text = pd.getPontosDevocao().ToString();
+        objetoHorda.text = horda.getHordaNumero().ToString();
+        objetoNome.text = pd.getCurrentSpellData().Nome;
+        objetoInteracao.text = mensagem;
+        HealthSystem(pd);
+    }
     //Funcao que gerencia sistema de municao
-    public void PlayerAmmoSystem(TMP_Text mostrarMunicao,PlayerData pd)
-    {
-        this.municao = pd.getCargas();
-        mostrarMunicao.text = "Cargas: " + this.municao;
-        if (Input.GetMouseButtonDown(0) && !this.atirando && pd.getCargas() > 0)
-        {
-            this.atirando = true;
-            this.atirando = false;
-        }
-    }
 
-    public void PointSystem(TMP_Text mostrarPontos,PlayerData pd)
+    private void HealthSystem(PlayerData pd)
     {
-        this.pontos=pd.getPontosDevocao();
-        mostrarPontos.text = this.pontos.ToString();
 
-    }
-
-    public void RoundSystem(TMP_Text mostrarHorda, Horda horda)
-    {
-        this.horda = horda.getHordaNumero();
-        mostrarHorda.text = this.horda.ToString();
-
-    }
-    public void HealthSystem(GameObject ferimento, PlayerData pd)
-    {
-        var image = ferimento.GetComponent<Image>();
         
         if (pd.getHP()==3)
         {
-            var tempColor = image.color;
+            var tempColor = ferimento.color;
             tempColor.a = 0;
-            image.color = tempColor;
+            ferimento.color = tempColor;
         }
 
         if (pd.getHP() == 2)
         {
-            var tempColor = image.color;
+            var tempColor = ferimento.color;
             tempColor.a = 0.2f;
-            image.color = tempColor;
+            ferimento.color = tempColor;
         }
         if (pd.getHP() == 1)
         {
-            var tempColor = image.color;
+            var tempColor = ferimento.color;
             tempColor.a = 0.5f;
-            image.color = tempColor;
+            ferimento.color = tempColor;
         }
 
         if (pd.getHP() == 0)
         {
-            var tempColor = image.color;
+            var tempColor = ferimento.color;
             tempColor.a = 1f;
-            image.color = tempColor;
+            ferimento.color = tempColor;
         }
 
-    }
-
-    public void NameOfSpellSystem(TMP_Text mostrarNome, PlayerData pd)
-    {
-        mostrarNome.text = pd.getCurrentSpellData().Nome;
-        
-    }
-    public void InteractionMessageSystem(TMP_Text mostrarNome, PlayerData pd)
-    {
-        
     }
 
 }

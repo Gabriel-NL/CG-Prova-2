@@ -4,11 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
   - GroundTag
   - WallTags
   - EnemyTag
   - Ammo
+  - Spell
   layers:
   - Default
   - TransparentFX

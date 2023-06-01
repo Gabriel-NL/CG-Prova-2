@@ -6,17 +6,21 @@ public class Movimento : MonoBehaviour
 {
     //Instancia
     public static Movimento instance;
-
-    //Componentes
-    private GameObject player;
-
-
+    
     //Teclas
     private KeyCode tecla_de_corrida = KeyCode.LeftShift;
 
+    //Componentes
+    public GameObject player;
+    private Rigidbody playerRB;
+    private Animator playerANIM;
+    private Transform playerTRANS;
+    public CharacterController characterController;
+
+
     //Variaveis 
     private float velocidade = 10;
-    private float velocidade_de_corrida = 50;
+    private float velocidade_de_corrida = 10;
     private float velocidade_atual;
 
     //Variaveis pro pulo
@@ -42,27 +46,30 @@ public class Movimento : MonoBehaviour
         this.grounded = grounded;
     }
 
+    void Start()
+    {
+        this.playerRB = this.player.GetComponent<Rigidbody>();
+        this.playerANIM = this.player.GetComponent<Animator>();
+        this.playerTRANS = this.player.transform;
+    }
+
 
     //Funcao que gerencia sistema de movimento
-    public void PlayerMovementSystem(GameObject player)
+    public void PlayerMovementSystem()
     {
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
 
-        Rigidbody playerRB= player.GetComponent<Rigidbody>();
-        Animator playerANIM = player.GetComponent<Animator>();
-        Transform playerTRANS=player.transform;
-
-
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
-            playerRB.AddForce(Vector3.up * jumpforce);
+            this.playerRB.AddForce(Vector3.up * jumpforce);
         }
 
         if (inputX != 0 || inputZ != 0)
         {
-            playerANIM.SetBool("moving", true);
-            playerTRANS.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
+            //this.playerANIM.SetBool("moving", true);
+            this.playerTRANS.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
+            
 
             if (Input.GetKeyDown(tecla_de_corrida))
             {
@@ -82,7 +89,7 @@ public class Movimento : MonoBehaviour
             velocidade_atual = velocidade;
         }
 
-        playerRB.AddForce(Vector3.down * gravityForce);
+        this.playerRB.AddForce(Vector3.down * gravityForce);
 
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Horda : MonoBehaviour
@@ -9,17 +10,18 @@ public class Horda : MonoBehaviour
     public static Horda instance;
 
     //Variáveis da horda
-    private float contagem=3;
+    private float contagem=5;
     private double inimigos_nesta_wave;
     private int inimigos_invocados;
     private bool spawning = false;
     private int wave_number = 0;
-    private int time_to_next_wave = 10;
+    private int time_to_next_wave = 5;
     private int time_to_next_enemy = 2;
 
     //Pegando componente
-    private GameObject fallen_bot;
-    private Transform spawn_position;
+    public GameObject spawner;
+    public GameObject fallen_bot;
+    public GameObject player;
 
     //Aplicando Singleton
     public static Horda Instance
@@ -34,6 +36,24 @@ public class Horda : MonoBehaviour
         }
     }
 
+    //Coletando o objeto do inimigo.
+    
+
+
+
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        Limitador();
+        //horda.Controlador();
+
+    }
+
     public void Limitador()
     {
         if (this.wave_number > 0)
@@ -44,17 +64,9 @@ public class Horda : MonoBehaviour
         }
     }
 
-    public int getHordaNumero()
-    {
-        return this.wave_number;
-    }
+    public int getHordaNumero() {return this.wave_number;}
 
-    public void setComponents(GameObject bot, GameObject position)
-    {
-        this.fallen_bot = bot;
-        this.spawn_position = position.transform;
-
-    }
+    public void startWaves() { this.wave_number = 1;}
 
 
     public void Controlador()
@@ -76,6 +88,7 @@ public class Horda : MonoBehaviour
     }
     private IEnumerator ConjurarHorda()
     {
+        var spawn_position = this.spawner.transform;
         //Calculo SpawnInimigos
         this.inimigos_nesta_wave = 6 + (6 * (this.wave_number -1) * 0.5); //6+ (6 x 0 x 0.5) = 6
 
@@ -91,6 +104,10 @@ public class Horda : MonoBehaviour
 
             //Instancia um objeto do tipo Fallen
             GameObject newEnemy = Instantiate(this.fallen_bot, new Vector3(posX, pivotPosition.y, posZ), Quaternion.identity);
+            newEnemy.transform.SetParent(spawn_position.transform, true);
+            var scriptenemy = newEnemy.GetComponent<FallenBotScript>();
+            scriptenemy.setTarget(this.player);
+
             inimigos_invocados++;
             //Espera alguns segundos antes de continuar o for
             yield return new WaitForSeconds(time_to_next_enemy);
