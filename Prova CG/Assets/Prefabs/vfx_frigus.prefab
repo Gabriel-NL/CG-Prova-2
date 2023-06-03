@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.801522, g: 0.030215396, b: 0.9150943, a: 1}
+      maxColor: {r: 0, g: 1, b: 0.9729936, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4974,7 +4974,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.8584906, g: 0.11743506, b: 0.81547254, a: 1}
+      key0: {r: 0, g: 1, b: 0.99226046, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -5021,10 +5021,11 @@ GameObject:
   - component: {fileID: 6544800294227581486}
   - component: {fileID: 1399088184133534}
   - component: {fileID: 3497633021043252759}
+  - component: {fileID: -8408187833150039050}
   m_Layer: 0
-  m_Name: vfx_Projetil
+  m_Name: vfx_frigus
   m_TagString: Spell
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -5074,3 +5075,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-8408187833150039050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6544800294227581481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0eea453a1624e48448501fedb921838a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactoVFX: {fileID: 5441890125944967909, guid: ccf705035f4082b439df1f990e3c3342, type: 3}
+  audioPlayer: {fileID: 0}
+  pd: {fileID: 0}

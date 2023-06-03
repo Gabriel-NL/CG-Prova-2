@@ -6,7 +6,7 @@ public class projetilcollider : MonoBehaviour // sistema para colisão de projé
 {
     public GameObject impactoVFX;
     public AudioSource audioPlayer;
-    public PlayerData pd= PlayerData.Instance;
+    public PlayerData pd;
 
    
 

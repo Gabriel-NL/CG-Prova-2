@@ -32,10 +32,10 @@ public class Disparo : MonoBehaviour
     public float projectileSpeed = 30; 
     public float arcRange = 1;
 
-    public void CastingSystem(Camera cam, GameObject proj,Transform firePoint, PlayerData pd)
+    public void CastingSystem(Camera cam,Transform firePoint, PlayerData pd)
     {
         this.cam = cam;
-        this.projectile = proj;
+        this.projectile = pd.getCurrentSpellData().Vfx;
         this.RHFirePoint = firePoint;
 
 
@@ -49,8 +49,7 @@ public class Disparo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && pd.getCargas() > 0)
             {
-                int fireRate = pd.getCurrentSpellData().Cadencia;
-                cronometro = 1f/fireRate;
+                cronometro = 1f/ pd.getCurrentSpellData().Cadencia;
                 pd.consumirCarga();
                 this.animatorPlayer.SetBool("shooting", true);
                 HandleCasting();
@@ -84,17 +83,7 @@ public class Disparo : MonoBehaviour
         iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
     }
 
-    public void ChangeSpells(PlayerData pd)
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            pd.SwitchSpells(0);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            pd.SwitchSpells(1);
-        }
-    }
+
 
 
 

@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerData : MonoBehaviour
 {
 
+    //Scripts
+    public TodasAsMagias tm;
+
     //Variaveis
     private int vida;
     private int pontosDeDevocao;
-    private int cargas;
     private bool playerVivo=true;
 
     //Inventario
@@ -17,28 +19,27 @@ public class PlayerData : MonoBehaviour
     private List<Estrutura> magias_equipadas = new List<Estrutura>();
 
 
-    //Instancia
-    public static PlayerData instance;
-
+    
 
     public GameObject peanut;
+
+    public void initialize()
+    {
+        this.current_spell = 0;
+        this.vida = 3;
+        this.tm.Initialize();
+        magias_equipadas.Add(tm.getMagia(0));
+        magias_equipadas[0].Cargas = 45;
+        magias_equipadas.Add(tm.getMagia(1));
+        magias_equipadas.Add(tm.getMagia(2));
+        magias_equipadas.Add(tm.getMagia(3));
+    }
+
     public PlayerData()
     {
-        this.vida = 3;
-        this.cargas = 500;
-        
+  
     }
-    public static PlayerData Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new PlayerData();
-            }
-            return instance;
-        }
-    }
+
 
     public void consumirCarga()
     {
@@ -49,6 +50,8 @@ public class PlayerData : MonoBehaviour
     {
         return this.magias_equipadas[current_spell].Cargas;
     }
+
+    public void recarregarCargas() { this.magias_equipadas[current_spell].Cargas=tm.getMagia(current_spell).Cargas; }
 
     public void acertouTiro(int quantia_pontos)
     {
@@ -82,46 +85,27 @@ public class PlayerData : MonoBehaviour
 
         }
     }
-    void OnTriggerEnter(Collider other)
+
+    public void SwitchSpells()
     {
-        if (other.gameObject.CompareTag("Ammo"))
-        {
-            this.cargas = 50;
-            Destroy(other.gameObject);
-        }
-    }
-
-    public void EquipamentoInicial(Estrutura magiaInicial)
-    {
-
-        magiaInicial.Cargas = 45;
-        current_spell = 0;
-        magias_equipadas.Add(magiaInicial);
-
-    }
-
-    public void SwitchSpells(int chosenSpell)
-    {
-        switch (chosenSpell)
-        {
-            case 0:
-                this.current_spell = 0;
-                break;
-            case 1:
-                this.current_spell = 1;
-                break;
-            default:
-                break;
-        }
-
-
         
-        if ( magias_equipadas[current_spell] == null)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             this.current_spell = 0;
-            Debug.Log("Voce não tem outra magia!");
-
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            this.current_spell = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            this.current_spell = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            this.current_spell = 3;
+        }
+
     }
 
     public Estrutura getCurrentSpellData()
