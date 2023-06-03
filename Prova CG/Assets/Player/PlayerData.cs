@@ -18,11 +18,6 @@ public class PlayerData : MonoBehaviour
     private int current_spell;
     private List<Estrutura> magias_equipadas = new List<Estrutura>();
 
-
-    
-
-    public GameObject peanut;
-
     public void initialize()
     {
         this.current_spell = 0;
@@ -51,7 +46,10 @@ public class PlayerData : MonoBehaviour
         return this.magias_equipadas[current_spell].Cargas;
     }
 
-    public void recarregarCargas() { this.magias_equipadas[current_spell].Cargas=tm.getMagia(current_spell).Cargas; }
+    public void recarregarCargas() 
+    {
+        this.magias_equipadas[current_spell].Cargas= magias_equipadas[current_spell].MaxCargas; 
+    }
 
     public void acertouTiro(int quantia_pontos)
     {

@@ -10,10 +10,6 @@ public class peanut : MonoBehaviour
     private bool touching;
 
     // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -28,7 +24,9 @@ public class peanut : MonoBehaviour
     {
         if (c.gameObject.tag == "Player")
         {
+            ;
             controlador.classe_user_interface.mensagem = "Aperte F para recarregar";
+            
             touching = true;
         }
     }
