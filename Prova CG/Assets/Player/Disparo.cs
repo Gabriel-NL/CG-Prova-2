@@ -21,7 +21,8 @@ public class Disparo : MonoBehaviour
     }
     //components
     public Camera cam;
-    public GameObject projectile;//provisorio
+    public Estrutura spell;
+    public GameObject projectile;
     public Transform RHFirePoint;
 
     //Variables
@@ -35,7 +36,7 @@ public class Disparo : MonoBehaviour
     public void CastingSystem(Camera cam,Transform firePoint, PlayerData pd)
     {
         this.cam = cam;
-        this.projectile = pd.getCurrentSpellData().Vfx;
+        this.spell = pd.getCurrentSpellData();
         this.RHFirePoint = firePoint;
 
 
@@ -77,8 +78,11 @@ public class Disparo : MonoBehaviour
             destination = ray.GetPoint(1000);
         }
 
-        projectileObj = Instantiate(this.projectile, this.RHFirePoint.position, Quaternion.identity);
+        projectileObj = Instantiate(this.spell.Vfx, this.RHFirePoint.position, Quaternion.identity);
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - this.RHFirePoint.position).normalized * projectileSpeed;
+        ProjetilCollider script = projectileObj.GetComponent<ProjetilCollider>();
+        script.setTipo(this.spell);
+        
 
         iTween.PunchPosition(projectileObj, new Vector3(Random.Range(-arcRange, arcRange), Random.Range(-arcRange, arcRange), 0), Random.Range(0.5f, 2));
     }

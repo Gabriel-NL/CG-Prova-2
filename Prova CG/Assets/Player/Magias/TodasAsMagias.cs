@@ -29,7 +29,7 @@ public class TodasAsMagias : MonoBehaviour
 
         Estrutura magia_3 = new Estrutura("Frigus", 10, 30, false, 8, 90,90, frigus_vfx);
         lista_de_magias.Add(magia_3);
-        Debug.Log(frigus_vfx.name);
+        //Debug.Log(frigus_vfx.name);
 
         Estrutura magia_4 = new Estrutura("Saxum", 10, 30, false, 4, 270,270, saxum_vfx);
         lista_de_magias.Add(magia_4);      

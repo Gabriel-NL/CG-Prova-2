@@ -5,17 +5,18 @@ using UnityEngine;
 public class FallenBotScript : MonoBehaviour
 {
 
-
+    //Componentes
     [SerializeField] public GameObject player;
-    public bool grounded=false;
-    public GameObject fallen;
     public Rigidbody rb;
-    public float speed = 3.5f;
+    public GameObject fallen;
+    private Horda horda;
     
-    void Start()
-    {
-       
-    }
+    //Variaveis
+    [SerializeField] public int pontosDeVida=6;
+    public float speed = 3.5f;
+    public bool grounded=false;
+
+
 
     //Quando tocar no ch�o, grounded se torna verdadeiro
     private void OnCollisionEnter(Collision c)
@@ -28,7 +29,11 @@ public class FallenBotScript : MonoBehaviour
         }
         if (c.gameObject.tag == "Spell")
         {
-            Destroy(fallen);
+
+           
+
+
+            //Destroy(fallen);
         };
     }
 
@@ -40,8 +45,11 @@ public class FallenBotScript : MonoBehaviour
             grounded = false;
         }
     }
-
+    
     public void setTarget(GameObject player) { this.player = player; }
+    public void setHP(int horda) { this.pontosDeVida = 8 + 10 * (horda-1); }
+
+    public void setHorda(Horda horda) { this.horda = horda; }
     void Update()
     {
         //Aviso: Por algum motivo,
@@ -57,12 +65,16 @@ public class FallenBotScript : MonoBehaviour
             rb.AddForce(Vector3.down * 30);
             
         }
-        if (fallen.transform.position.y < -10)
+        if (fallen.transform.position.y < -10 || this.pontosDeVida<=0)
         {
+            if (this.horda != null){this.horda.fallenMorto();}
+
             Destroy(fallen);
         }
 
     }
+
+
 
 
 }
