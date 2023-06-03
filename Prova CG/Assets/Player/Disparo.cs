@@ -57,7 +57,7 @@ public class Disparo : MonoBehaviour
             }
             else
             {
-                this.animatorPlayer.SetBool("shooting", false);
+                //this.animatorPlayer.SetBool("shooting", false);
             }
         }
     }

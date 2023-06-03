@@ -42,7 +42,7 @@ namespace Player
             Cursor.lockState = CursorLockMode.Locked;
             cam = camera.GetComponent<Camera>();
             pd.EquipamentoInicial(todas_as_magias.getMagia(0));
-            pd.EquipamentoInicial(todas_as_magias.getMagia(3));
+            pd.EquipamentoInicial(todas_as_magias.getMagia(1));
             classe_disparo.animatorPlayer = playerAnimator;
         }
 
