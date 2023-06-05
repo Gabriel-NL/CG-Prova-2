@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class peanut : MonoBehaviour
+public class RecargaDeCargas : MonoBehaviour
 {
     public Controlador controlador;
     public PlayerData playerData;

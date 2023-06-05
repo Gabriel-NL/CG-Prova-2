@@ -15,8 +15,6 @@ public class Movimento : MonoBehaviour
     private Rigidbody playerRB;
     private Animator playerANIM;
     private Transform playerTRANS;
-    public CharacterController characterController;
-
 
     //Variaveis 
     private float velocidade = 10;
