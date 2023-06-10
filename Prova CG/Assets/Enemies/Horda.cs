@@ -9,7 +9,7 @@ public class Horda : MonoBehaviour
     //Instancia
     public static Horda instance;
 
-    //Variáveis da horda
+    //Variï¿½veis da horda
     private float contagem=5;
     public double total_fallen_nesta_horda=0;
     public int total_fallen_vivos;
@@ -76,17 +76,17 @@ public class Horda : MonoBehaviour
 
     public void Controlador()
     {
-        //Se o spawner não estiver ativo, ele vai executar a contagem regressiva
+        //Se o spawner nï¿½o estiver ativo, ele vai executar a contagem regressiva
         if (this.spawning == false && this.total_fallen_vivos<=0)
         {
             this.contagem -= Time.deltaTime;
         }
 
-        //Assim que a contagem regressiva acabar, ele vai começar a invocar os inimigos.
+        //Assim que a contagem regressiva acabar, ele vai comeï¿½ar a invocar os inimigos.
         if (this.contagem <= 0)
         {
             this.contagem = this.time_to_next_wave; //Reseta o timer
-            this.spawning = true; //Define que o spawner tá ativado 
+            this.spawning = true; //Define que o spawner tï¿½ ativado 
             StartCoroutine(ConjurarHorda());//Funcao que invoca as criaturas
 
         }
@@ -100,10 +100,10 @@ public class Horda : MonoBehaviour
         //Enquanto "i" for menor que o numero de inimigos nesta wave, executa o codigo abaixo
         for (int i = 0; i < this.total_fallen_nesta_horda; i++)
         {
-            //Pega a posição do spawner onde o script se situa
+            //Pega a posiï¿½ï¿½o do spawner onde o script se situa
             Vector3 pivotPosition = spawn_position.position;
 
-            //Define posição x e z aleatórias
+            //Define posiï¿½ï¿½o x e z aleatï¿½rias
             float posX = pivotPosition.x + Random.Range(-10, 10);
             float posZ = pivotPosition.z + Random.Range(-10, 10);
 

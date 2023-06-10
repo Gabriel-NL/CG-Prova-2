@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FallenBotScript : MonoBehaviour
 {
-
     //Componentes
     [SerializeField] public GameObject player;
     public Rigidbody rb;
@@ -12,27 +11,19 @@ public class FallenBotScript : MonoBehaviour
     private Horda horda;
     
     //Variaveis
-    [SerializeField] public int pontosDeVida=6;
+    [SerializeField] public int pontosDeVida = 6;
     public float speed = 3.5f;
-    public bool grounded=false;
-
-
+    public bool grounded = false;
 
     //Quando tocar no ch�o, grounded se torna verdadeiro
     private void OnCollisionEnter(Collision c)
     {
-
         if (c.gameObject.tag == "GroundTag")
         {
             grounded = true;
-
         }
         if (c.gameObject.tag == "Spell")
         {
-
-           
-
-
             //Destroy(fallen);
         };
     }
@@ -63,18 +54,14 @@ public class FallenBotScript : MonoBehaviour
         if (grounded==false)
         {
             rb.AddForce(Vector3.down * 30);
-            
         }
+
         if (fallen.transform.position.y < -10 || this.pontosDeVida<=0)
         {
             if (this.horda != null){this.horda.fallenMorto();}
-
+            
             Destroy(fallen);
         }
-
     }
-
-
-
 
 }
