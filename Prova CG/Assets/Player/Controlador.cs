@@ -58,7 +58,7 @@ namespace Player
                 classe_visao.CameraSystem(jogador_objeto.transform, camera_objeto.transform);
                 classe_disparo.CastingSystem(camera_componente, ponto_de_disparo.transform, pd);
 
-                classe_interface_usuario.AtualizarUI();
+                //classe_interface_usuario.AtualizarUI();
 
                 if (Input.GetKeyDown(tecla_de_ferimento))
                 {

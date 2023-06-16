@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class PlantaCarnivora : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public RawImage floatingImage; // Reference to the Image component
-    public RawImage[] imageOptions; // Array of sprite options for the floating image
+    //Imagem e array de imagens
+    public RawImage floatingImage; 
+    public RawImage[] imageOptions; 
 
-    public bool isVisible; // Flag to track the visibility of the image
-    private bool isChangingImage; // Flag to track if the image is currently changing
-    public float sortingSpeed = 0f; // Speed at which the sorting slows down
+    //Variaveis
+    private bool isVisible;
+    private bool isChangingImage;
+    private float sortingSpeed = 0f;
 
-    public Controlador controlador;
+    //Scripts
+    public UI classe_interface_usuario;
 
     private void Start()
     {
@@ -31,12 +33,12 @@ public class PlantaCarnivora : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision c)
     {
-        if (collision.gameObject.tag=="Player")
+        if (c.collider.CompareTag("Player"))
         {
             // Set the visibility flag to true when collision with the jogador_objeto occurs
-            controlador.classe_interface_usuario.mensagem = "Gerar magia aleatória";
+            classe_interface_usuario.AtualizarNomeMensagem("Gerar magia aleatória");
             isVisible = true;
 
         }
@@ -44,9 +46,8 @@ public class PlantaCarnivora : MonoBehaviour
 
     private void OnCollisionExit(Collision c)
     {
-        if (c.gameObject.tag == "Player")
-        {
-            controlador.classe_interface_usuario.mensagem = "";
+        if (c.collider.CompareTag("Player")){
+            classe_interface_usuario.AtualizarNomeMensagem("");
             isVisible = false;
         }
     }
@@ -65,15 +66,12 @@ public class PlantaCarnivora : MonoBehaviour
         // Set the initial sorting speed
         sortingSpeed = 6;
 
-        // Randomly select an index for the image options
-        int randomIndex = Random.Range(0, imageOptions.Length);
-
         // Start sorting the image options
         SetImageTransparency(1f);
-        StartCoroutine(SortImages(randomIndex));
+        StartCoroutine(SortImages());
     }
 
-    private IEnumerator SortImages(int targetIndex)
+    private IEnumerator SortImages()
     {
         int currentIndex = 0;
 

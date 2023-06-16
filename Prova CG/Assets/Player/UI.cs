@@ -20,43 +20,59 @@ public class UI : MonoBehaviour
     public Horda horda;
 
     //Variaveis
-    public string mensagem;
 
     public void AtualizarUI()
     {
-        objetoMunicao.text = "Cargas: " + pd.GetCargas();
-        objetoPontos.text = pd.GetPontosDevocao().ToString();
         objetoHorda.text = horda.getHordaNumero().ToString();
-        objetoNome.text = pd.GetCurrentSpellData().Nome;
-        objetoInteracao.text = mensagem;
-        HealthSystem(pd);
+
     }
 
-    private void HealthSystem(PlayerData pd)
+    public void AtualizarMunicao(int cargas)
+    {
+        objetoMunicao.text = "Cargas: " + cargas;
+    }
+
+    public void AtualizarPontos(int pontos)
+    {
+        objetoPontos.text = pontos.ToString();
+    }
+
+    public void AtualizarNomeMagia()
+    {
+        objetoNome.text = pd.GetDadosDaMagiaAtual().Nome;
+    }
+
+    public void AtualizarNomeMensagem(string mensagem)
+    {
+        objetoInteracao.text = mensagem;
+    }
+
+
+    public void HealthSystem(int vida)
     {
 
         
-        if (pd.GetHP()==3)
+        if (vida==3)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0;
             ferimento.color = tempColor;
         }
 
-        if (pd.GetHP() == 2)
+        if (vida==2)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0.2f;
             ferimento.color = tempColor;
         }
-        if (pd.GetHP() == 1)
+        if (vida == 1)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0.5f;
             ferimento.color = tempColor;
         }
 
-        if (pd.GetHP() == 0)
+        if (vida >= 0)
         {
             var tempColor = ferimento.color;
             tempColor.a = 1f;

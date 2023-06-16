@@ -5,13 +5,10 @@ using UnityEngine;
 
 public class RecargaDeCargas : MonoBehaviour
 {
-    public Controlador controlador;
+    public UI classe_interface_usuario;
     public PlayerData playerData;
     private bool touching;
 
-    // Start is called before the first frame update
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && touching)
@@ -22,19 +19,18 @@ public class RecargaDeCargas : MonoBehaviour
 
     private void OnCollisionEnter(Collision c)
     {
-        if (c.gameObject.tag == "Player")
+        if (c.collider.CompareTag("Player"))
         {
-            ;
-            controlador.classe_interface_usuario.mensagem = "Aperte F para recarregar";
+            classe_interface_usuario.AtualizarNomeMensagem("Aperte F para recarregar");
             
             touching = true;
         }
     }
     private void OnCollisionExit(Collision c)
     {
-        if (c.gameObject.tag == "Player")
+        if (c.collider.CompareTag("Player"))
         {
-            controlador.classe_interface_usuario.mensagem = "";
+            classe_interface_usuario.AtualizarNomeMensagem("");
             touching = false;
         }
     }

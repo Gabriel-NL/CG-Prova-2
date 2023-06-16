@@ -6,16 +6,10 @@ using UnityEngine;
 public class Semaforo : MonoBehaviour
 {
     
-    public Controlador controlador;
+    public UI classe_interface_usuario;
     public Horda horda;
     private bool touching;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -29,15 +23,15 @@ public class Semaforo : MonoBehaviour
     {
         if (c.gameObject.name == "Player")
         {
-                controlador.classe_interface_usuario.mensagem="Aperte F para iniciar uma nova horda";
-                touching = true;
+            classe_interface_usuario.AtualizarNomeMensagem("Aperte F para iniciar uma nova horda");
+            touching = true;
         }
     }
     private void OnCollisionExit(Collision c)
     {
         if (c.gameObject.name == "Player")
         {
-            controlador.classe_interface_usuario.mensagem = "";
+            classe_interface_usuario.AtualizarNomeMensagem("");
             touching = false;
         }
     }

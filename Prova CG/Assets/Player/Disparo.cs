@@ -25,7 +25,7 @@ public class Disparo : MonoBehaviour
     public void CastingSystem(Camera cam,Transform firePoint, PlayerData pd)
     {
         this.cam = cam;
-        this.spell = pd.GetCurrentSpellData();
+        this.spell = pd.GetDadosDaMagiaAtual();
         this.RHFirePoint = firePoint;
 
 
@@ -39,7 +39,7 @@ public class Disparo : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Mouse0) && pd.GetCargas() > 0)
             {
-                cronometro = 1f/ pd.GetCurrentSpellData().Cadencia;
+                cronometro = 1f/ pd.GetDadosDaMagiaAtual().Cadencia;
                 pd.ConsumirCarga();
                 this.animatorPlayer.SetBool("shooting", true);
                 HandleCasting();
