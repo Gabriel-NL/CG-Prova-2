@@ -29,7 +29,7 @@ public class Semaforo : MonoBehaviour
     {
         if (c.gameObject.name == "Player")
         {
-                controlador.classe_user_interface.mensagem="Aperte F para iniciar uma nova horda";
+                controlador.classe_interface_usuario.mensagem="Aperte F para iniciar uma nova horda";
                 touching = true;
         }
     }
@@ -37,7 +37,7 @@ public class Semaforo : MonoBehaviour
     {
         if (c.gameObject.name == "Player")
         {
-            controlador.classe_user_interface.mensagem = "";
+            controlador.classe_interface_usuario.mensagem = "";
             touching = false;
         }
     }

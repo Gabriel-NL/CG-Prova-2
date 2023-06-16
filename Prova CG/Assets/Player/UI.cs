@@ -15,60 +15,48 @@ public class UI : MonoBehaviour
     public TMP_Text objetoInteracao;
     public Image ferimento;
 
+    //Scripts
+    public PlayerData pd;
+    public Horda horda;
+
     //Variaveis
-    private bool atirando = false;
     public string mensagem;
 
-    //Instancia
-    public static UI instance;
-
-    public static UI Instance
+    public void AtualizarUI()
     {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new UI();
-            }
-            return instance;
-        }
-    }
-    public void UIHandler(PlayerData pd,Horda horda)
-    {
-        objetoMunicao.text = "Cargas: " + pd.getCargas();
-        objetoPontos.text = pd.getPontosDevocao().ToString();
+        objetoMunicao.text = "Cargas: " + pd.GetCargas();
+        objetoPontos.text = pd.GetPontosDevocao().ToString();
         objetoHorda.text = horda.getHordaNumero().ToString();
-        objetoNome.text = pd.getCurrentSpellData().Nome;
+        objetoNome.text = pd.GetCurrentSpellData().Nome;
         objetoInteracao.text = mensagem;
         HealthSystem(pd);
     }
-    //Funcao que gerencia sistema de municao
 
     private void HealthSystem(PlayerData pd)
     {
 
         
-        if (pd.getHP()==3)
+        if (pd.GetHP()==3)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0;
             ferimento.color = tempColor;
         }
 
-        if (pd.getHP() == 2)
+        if (pd.GetHP() == 2)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0.2f;
             ferimento.color = tempColor;
         }
-        if (pd.getHP() == 1)
+        if (pd.GetHP() == 1)
         {
             var tempColor = ferimento.color;
             tempColor.a = 0.5f;
             ferimento.color = tempColor;
         }
 
-        if (pd.getHP() == 0)
+        if (pd.GetHP() == 0)
         {
             var tempColor = ferimento.color;
             tempColor.a = 1f;
@@ -76,5 +64,7 @@ public class UI : MonoBehaviour
         }
 
     }
+
+    
 
 }

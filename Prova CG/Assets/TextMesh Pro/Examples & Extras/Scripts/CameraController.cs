@@ -70,7 +70,7 @@ namespace TMPro.Examples
         {
             if (CameraTarget == null)
             {
-                // If we don't have a target (assigned by the player, create a dummy in the center of the scene).
+                // If we don't have a target (assigned by the jogador_objeto, create a dummy in the center of the scene).
                 dummyTarget = new GameObject("Camera Target").transform;
                 CameraTarget = dummyTarget;
             }
@@ -146,7 +146,7 @@ namespace TMPro.Examples
                     MovementSmoothing = !MovementSmoothing;
 
 
-                // Check for right mouse button to change camera follow and elevation angle
+                // Check for right mouse button to change camera_objeto follow and elevation angle
                 if (Input.GetMouseButton(1))
                 {
                     mouseY = Input.GetAxis("Mouse Y");

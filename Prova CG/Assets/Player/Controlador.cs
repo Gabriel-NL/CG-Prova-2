@@ -10,80 +10,95 @@ namespace Player
     public class Controlador : MonoBehaviour
     {
         /*---------------------------------------------*/
-        //Pegando instancias
-        private Visao classe_visao = Visao.Instance;
-        private Disparo classe_disparo = Disparo.Instance;
+        //Pegando scripts
+        public UI classe_interface_usuario;
+        public Visao classe_visao;
+        public Movimento classe_movimento;
+        public Disparo classe_disparo;
         public TodasAsMagias todas_as_magias;
         /*---------------------------------------------*/
         //Pegando objetos
-        public Movimento classe_movimento;
-        public UI classe_user_interface;
-        public GameObject player;
-        public GameObject camera;
-        public GameObject firepoint;
-        public Animator playerAnimator;
-        public Animator cameraAnimator;
+        public GameObject jogador_objeto;
+        public GameObject camera_objeto;
+        public GameObject ponto_de_disparo;
+        public Animator player_CA;
+        public Animator camera_CA;
         public PlayerData pd;
         public Horda horda;
         /*---------------------------------------------*/
-        private Camera cam;
-        private KeyCode tecla_de_ferimento = KeyCode.Tab;
+        private Camera camera_componente;
+        private readonly KeyCode tecla_de_ferimento = KeyCode.Tab;
         /*---------------------------------------------*/
 
         //Fun��o que ocorre toda vez que o jogo � iniciado
         void Start()
         {
-            pd.initialize();
+            pd.Inicializar();
             Cursor.lockState = CursorLockMode.Locked;
-            cam = camera.GetComponent<Camera>();
+            camera_componente = camera_objeto.GetComponent<Camera>();
 
-            classe_disparo.animatorPlayer = playerAnimator;
+            classe_disparo.animatorPlayer = player_CA;
         }
 
         //Fun��o que ocorre � cada segundo
         void FixedUpdate()
         {
-            if (pd.playerState())
+            if (pd.JogadorVivo())
             {
-                classe_movimento.PlayerMovementSystem();
+                classe_movimento.SistemaDeMovimentoDoJogador();
             }
         }
 
         void Update()
         {
-            if (pd.playerState())
+            if (pd.JogadorVivo())
             {
-                pd.SwitchSpells();
-                classe_user_interface.UIHandler(pd,horda);
-                classe_visao.CameraSystem(player.transform, camera.transform);
-                classe_disparo.CastingSystem(cam, firepoint.transform, pd);
+                classe_movimento.SistemaDeCorrida();
+                pd.SistemaDeTrocaDeMagias();
+                classe_visao.CameraSystem(jogador_objeto.transform, camera_objeto.transform);
+                classe_disparo.CastingSystem(camera_componente, ponto_de_disparo.transform, pd);
+
+                classe_interface_usuario.AtualizarUI();
+
                 if (Input.GetKeyDown(tecla_de_ferimento))
                 {
-                    pd.tomouDano();
+                    pd.TomouDano();
                 }
             }
             else
             {
-                cameraAnimator.SetBool("dead", true);
+                camera_CA.SetBool("dead", true);
             }
         }
 
         private void OnCollisionEnter(Collision c)
         {
-            //Se jogador tocar no ch�o, esta condin��o � ativada
+            //Se jogador tocar no chao, esta condincao e ativada
+            /*
+             
             if (c.gameObject.tag == "GroundTag")
             {
-                classe_movimento.setGrounded(true);
-            }            
+            }
+             */
+            if (c.collider.CompareTag("GroundTag"))
+            {
+                classe_movimento.SetGrounded(true);
+            }
+            if (c.collider.CompareTag("WallTags"))
+            {
+                classe_movimento.isRunning=false;
+            }
         }
 
         private void OnCollisionExit(Collision c)
         {
-            //Se o jogador pular, ou sair do ch�o de alguma forma, esta condin��o � ativada
-            if (c.gameObject.tag == "GroundTag") {
-                classe_movimento.setGrounded(false);
+            //Se o jogador pular, ou sair do chao de alguma forma, esta condincao e ativada
+            if (c.collider.CompareTag("GroundTag")) {
+                classe_movimento.SetGrounded(false);
             }
         }
+
+        
 
     }
 }

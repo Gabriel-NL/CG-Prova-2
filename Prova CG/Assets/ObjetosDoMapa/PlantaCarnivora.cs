@@ -35,8 +35,8 @@ public class PlantaCarnivora : MonoBehaviour
     {
         if (collision.gameObject.tag=="Player")
         {
-            // Set the visibility flag to true when collision with the player occurs
-            controlador.classe_user_interface.mensagem = "Gerar magia aleatória";
+            // Set the visibility flag to true when collision with the jogador_objeto occurs
+            controlador.classe_interface_usuario.mensagem = "Gerar magia aleatória";
             isVisible = true;
 
         }
@@ -46,7 +46,7 @@ public class PlantaCarnivora : MonoBehaviour
     {
         if (c.gameObject.tag == "Player")
         {
-            controlador.classe_user_interface.mensagem = "";
+            controlador.classe_interface_usuario.mensagem = "";
             isVisible = false;
         }
     }

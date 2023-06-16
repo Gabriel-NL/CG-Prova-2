@@ -8,86 +8,92 @@ public class Movimento : MonoBehaviour
     public static Movimento instance;
     
     //Teclas
-    private KeyCode tecla_de_corrida = KeyCode.LeftShift;
+    private readonly KeyCode tecla_de_corrida = KeyCode.LeftShift;
 
     //Componentes
-    public GameObject player;
-    private Rigidbody playerRB;
-    private Animator playerANIM;
-    private Transform playerTRANS;
+    public GameObject jogador;
+    private Rigidbody jogador_rigidBody;
+    //private Animator jogador_controle_animacoes;
+    private Transform jogador_transform;
 
-    //Variaveis 
-    private float velocidade = 10;
-    private float velocidade_de_corrida = 10;
-    private float velocidade_atual;
+    //Variaveis movimento
+    private readonly float velocidade_caminhada = 10;
+    private readonly float velocidade_corrida = 20;
+    public bool isRunning;
 
-    //Variaveis pro pulo
+    //Variaveis pulo
     private bool grounded = false;
-    private int jumpforce = 700;
-    private int gravityForce = 50;
-
-    public static Movimento Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new Movimento();
-            }
-            return instance;
-        }
-    }
+    private readonly int jumpforce = 700;
+    private readonly int gravityForce = 50;
 
 
-    public void setGrounded(bool grounded)
+
+
+    public void SetGrounded(bool grounded)
     {
         this.grounded = grounded;
     }
 
     void Start()
     {
-        this.playerRB = this.player.GetComponent<Rigidbody>();
-        this.playerANIM = this.player.GetComponent<Animator>();
-        this.playerTRANS = this.player.transform;
+        this.jogador_rigidBody = this.jogador.GetComponent<Rigidbody>();
+        //this.jogador_controle_animacoes = this.jogador.GetComponent<Animator>();
+        this.jogador_transform = this.jogador.transform;
     }
 
 
     //Funcao que gerencia sistema de movimento
-    public void PlayerMovementSystem()
+    public void SistemaDeMovimentoDoJogador()
     {
         var inputX = Input.GetAxis("Horizontal");
         var inputZ = Input.GetAxis("Vertical");
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
-            this.playerRB.AddForce(Vector3.up * jumpforce);
+            this.jogador_rigidBody.AddForce(Vector3.up * jumpforce);
         }
 
         if (inputX != 0 || inputZ != 0)
         {
-            //this.playerANIM.SetBool("moving", true);
-            this.playerTRANS.Translate(new Vector3(inputX, 0, inputZ) * Time.deltaTime * velocidade_atual, Space.Self);
-            
-
-            if (Input.GetKeyDown(tecla_de_corrida))
+            //this.jogador_controle_animacoes.SetBool("moving", true);
+            if (isRunning)
             {
-                //anim.SetBool("running", true);
-                velocidade_atual = velocidade_de_corrida;
+                this.jogador_transform.Translate(this.velocidade_corrida * Time.deltaTime * new Vector3(inputX, 0, inputZ), Space.Self);
             }
             else
             {
-                //anim.SetBool("running", false);
-                velocidade_atual = velocidade;
+                this.jogador_transform.Translate(this.velocidade_caminhada * Time.deltaTime * new Vector3(inputX, 0, inputZ), Space.Self);
             }
+
+
         }
         else
         {
             //anim.SetBool("moving", false);
             //anim.SetBool("running", false);
-            velocidade_atual = velocidade;
+            isRunning = false;
         }
 
-        this.playerRB.AddForce(Vector3.down * gravityForce);
+        this.jogador_rigidBody.AddForce(Vector3.down * gravityForce);
 
     }
+
+    public void SistemaDeCorrida()
+    {
+        if (Input.GetKeyDown(tecla_de_corrida))
+        {
+            //anim.SetBool("running", true);
+            isRunning   = true;
+        }
+        
+        if(Input.GetKeyUp(tecla_de_corrida)) 
+        {
+            //anim.SetBool("running", false);
+            isRunning= false;
+        }
+
+    }
+
+    
+
 }
