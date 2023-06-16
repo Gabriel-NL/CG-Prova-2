@@ -2182,6 +2182,7 @@ GameObject:
   - component: {fileID: 754432325}
   - component: {fileID: 754432327}
   - component: {fileID: 754432328}
+  - component: {fileID: 754432329}
   m_Layer: 0
   m_Name: Maozinha
   m_TagString: Untagged
@@ -2224,7 +2225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2058089463481182981, guid: 46eb6f75a44eb4945be47252971c6aa4, type: 3}
+  - {fileID: 2100000, guid: 50f843a41c163ab44bb5d98939d71082, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2287,6 +2288,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aee6f073c70e8441b3c46940524c84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &754432329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754432323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382e8e39be320de4ca3038bb1a28126d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialPalma: {fileID: 2100000, guid: 50f843a41c163ab44bb5d98939d71082, type: 2}
+  imagem1: {fileID: 2800000, guid: 40a2d2aa3f67979429ccf137f1935042, type: 3}
+  imagem2: {fileID: 2800000, guid: 1bab4af5eb032fe44991ce25cbd01975, type: 3}
+  imagem3: {fileID: 2800000, guid: 185bf46c466aa1549adb57dbb839d83b, type: 3}
+  imagem4: {fileID: 2800000, guid: 05646f3efcd98e04e981a4a06aff37bd, type: 3}
 --- !u!1 &757412421
 GameObject:
   m_ObjectHideFlags: 0
