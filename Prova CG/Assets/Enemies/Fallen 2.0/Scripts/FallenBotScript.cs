@@ -58,7 +58,7 @@ public class FallenBotScript : MonoBehaviour
 
         if (fallen.transform.position.y < -10 || this.pontosDeVida<=0)
         {
-            if (this.horda != null){this.horda.fallenMorto();}
+            if (this.horda != null){this.horda.FallenMorto();}
             
             Destroy(fallen);
         }

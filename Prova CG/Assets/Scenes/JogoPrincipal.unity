@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tm: {fileID: 170932012}
+  classe_user_interface: {fileID: 1324938697}
   UIatualizada: 0
 --- !u!114 &170932012
 MonoBehaviour:
@@ -807,7 +808,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af21cda362f0fc4e88e267ae328b814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 0}
   horda: {fileID: 1142614415}
 --- !u!1 &380060731 stripped
 GameObject:
@@ -1534,9 +1535,7 @@ MonoBehaviour:
   - {fileID: 13523180}
   - {fileID: 567113428}
   - {fileID: 854834177}
-  isVisible: 0
-  sortingSpeed: 0
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 0}
 --- !u!1 &567113426
 GameObject:
   m_ObjectHideFlags: 0
@@ -3502,7 +3501,6 @@ MonoBehaviour:
   ferimento: {fileID: 629427776}
   pd: {fileID: 170932011}
   horda: {fileID: 1142614415}
-  mensagem: 
 --- !u!1001 &1340637248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4333,7 +4331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbebd9f66a9a90449831077894ffee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 1324938697}
   playerData: {fileID: 170932011}
 --- !u!1 &1683483357
 GameObject:

@@ -104,14 +104,21 @@ public class PlayerData : MonoBehaviour
         {
             this.magia_atual = 3;
         }
-
     }
+
+    public void PegarMagiaNova(int id_magia) 
+    {
+
+        magias_equipadas.Add(tm.getMagia(id_magia));
+    }
+
 
     public Estrutura GetDadosDaMagiaAtual()
     {
 
         try
         {
+            classe_user_interface.AtualizarNomeMagia(magias_equipadas[this.magia_atual].Nome);
             return magias_equipadas[this.magia_atual];
         }
         catch (ArgumentOutOfRangeException ex)

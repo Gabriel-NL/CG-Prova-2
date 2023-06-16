@@ -11,7 +11,6 @@ namespace Player
     {
         /*---------------------------------------------*/
         //Pegando scripts
-        public UI classe_interface_usuario;
         public Visao classe_visao;
         public Movimento classe_movimento;
         public Disparo classe_disparo;
@@ -21,7 +20,7 @@ namespace Player
         public GameObject jogador_objeto;
         public GameObject camera_objeto;
         public GameObject ponto_de_disparo;
-        public Animator player_CA;
+        //public Animator player_CA;
         public Animator camera_CA;
         public PlayerData pd;
         public Horda horda;
@@ -30,17 +29,15 @@ namespace Player
         private readonly KeyCode tecla_de_ferimento = KeyCode.Tab;
         /*---------------------------------------------*/
 
-        //Fun��o que ocorre toda vez que o jogo � iniciado
         void Start()
         {
             pd.Inicializar();
             Cursor.lockState = CursorLockMode.Locked;
             camera_componente = camera_objeto.GetComponent<Camera>();
 
-            classe_disparo.animatorPlayer = player_CA;
+            //classe_disparo.animatorPlayer = player_CA;
         }
 
-        //Fun��o que ocorre � cada segundo
         void FixedUpdate()
         {
             if (pd.JogadorVivo())
@@ -58,8 +55,6 @@ namespace Player
                 classe_visao.CameraSystem(jogador_objeto.transform, camera_objeto.transform);
                 classe_disparo.CastingSystem(camera_componente, ponto_de_disparo.transform, pd);
 
-                //classe_interface_usuario.AtualizarUI();
-
                 if (Input.GetKeyDown(tecla_de_ferimento))
                 {
                     pd.TomouDano();
@@ -74,12 +69,7 @@ namespace Player
         private void OnCollisionEnter(Collision c)
         {
             //Se jogador tocar no chao, esta condincao e ativada
-            /*
-             
-            if (c.gameObject.tag == "GroundTag")
-            {
-            }
-             */
+           
             if (c.collider.CompareTag("GroundTag"))
             {
                 classe_movimento.SetGrounded(true);
@@ -97,8 +87,6 @@ namespace Player
                 classe_movimento.SetGrounded(false);
             }
         }
-
-        
 
     }
 }

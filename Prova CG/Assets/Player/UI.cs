@@ -17,15 +17,6 @@ public class UI : MonoBehaviour
 
     //Scripts
     public PlayerData pd;
-    public Horda horda;
-
-    //Variaveis
-
-    public void AtualizarUI()
-    {
-        objetoHorda.text = horda.getHordaNumero().ToString();
-
-    }
 
     public void AtualizarMunicao(int cargas)
     {
@@ -37,14 +28,19 @@ public class UI : MonoBehaviour
         objetoPontos.text = pontos.ToString();
     }
 
-    public void AtualizarNomeMagia()
+    public void AtualizarNomeMagia(string nome)
     {
-        objetoNome.text = pd.GetDadosDaMagiaAtual().Nome;
+        objetoNome.text = nome;
     }
 
     public void AtualizarNomeMensagem(string mensagem)
     {
         objetoInteracao.text = mensagem;
+    }
+
+    public void AtualizarNumeroHorda(int numeroHorda)
+    {
+        objetoHorda.text =numeroHorda.ToString();
     }
 
 

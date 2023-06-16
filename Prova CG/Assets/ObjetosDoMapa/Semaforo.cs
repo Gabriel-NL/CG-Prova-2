@@ -15,7 +15,7 @@ public class Semaforo : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && touching)
         {
-            horda.startWaves();
+            horda.IniciarHordas();
         }
     }
 
