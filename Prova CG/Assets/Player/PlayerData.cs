@@ -12,22 +12,24 @@ public class PlayerData : MonoBehaviour
     //Variaveis
     private int vida;
     private int pontosDeDevocao;
-    private bool playerVivo=true;
+    public bool UIatualizada;
 
     //Inventario
     private int current_spell;
-    private List<Estrutura> magias_equipadas = new List<Estrutura>();
+    private List<Estrutura> magias_equipadas = new();
 
-    public void initialize()
+    public void Inicializar()
     {
         this.current_spell = 0;
         this.vida = 3;
+        this.UIatualizada = false;
+
         this.tm.Initialize();
+
         magias_equipadas.Add(tm.getMagia(0));
         magias_equipadas[0].Cargas = 45;
-        magias_equipadas.Add(tm.getMagia(1));
-        magias_equipadas.Add(tm.getMagia(2));
-        magias_equipadas.Add(tm.getMagia(3));
+
+        
     }
 
     public PlayerData()
@@ -36,42 +38,43 @@ public class PlayerData : MonoBehaviour
     }
 
 
-    public void consumirCarga()
+
+    public void ConsumirCarga()
     {
         this.magias_equipadas[current_spell].Cargas--;
     }
 
-    public int getCargas()
+    public int GetCargas()
     {
         return this.magias_equipadas[current_spell].Cargas;
     }
 
-    public void recarregarCargas() 
+    public void RecarregarCargas() 
     {
         this.magias_equipadas[current_spell].Cargas= magias_equipadas[current_spell].MaxCargas; 
     }
 
-    public void acertouTiro(int quantia_pontos)
+    public void AcertouTiro(int quantia_pontos)
     {
-        this.pontosDeDevocao = this.pontosDeDevocao + quantia_pontos;
+        this.pontosDeDevocao += quantia_pontos;
     }
-    public int getPontosDevocao()
+    public int GetPontosDevocao()
     {
         return this.pontosDeDevocao;
     }
 
-    public void tomouDano()
+    public void TomouDano()
     {
-        this.vida = this.vida - 1;
-        Debug.Log("Vida atual: "+ this.vida);
+        this.vida--;  
+        
     }
 
-    public int getHP()
+    public int GetHP()
     {
         return this.vida;
     }
 
-    public bool playerState() 
+    public bool JogadorVivo() 
     {
         if (this.vida <= 0)
         {
@@ -84,7 +87,7 @@ public class PlayerData : MonoBehaviour
         }
     }
 
-    public void SwitchSpells()
+    public void SistemaDeTrocaDeMagias()
     {
         
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -106,7 +109,7 @@ public class PlayerData : MonoBehaviour
 
     }
 
-    public Estrutura getCurrentSpellData()
+    public Estrutura GetCurrentSpellData()
     {
 
         try
@@ -115,7 +118,8 @@ public class PlayerData : MonoBehaviour
         }
         catch (ArgumentOutOfRangeException ex)
         {
-            Debug.Log("Voce não tem outra magia!");
+            Debug.Log("Voce não tem outra magia! Erro de nome: " + ex);
+
             this.current_spell = 0;
             return magias_equipadas[this.current_spell];
         }

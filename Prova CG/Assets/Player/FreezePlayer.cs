@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FreezePlayer : MonoBehaviour
 {
-    public GameObject playerObject; // Reference to the player's GameObject
+    public GameObject playerObject; // Reference to the jogador_objeto's GameObject
     // or
 
     public void AnimationFinished()

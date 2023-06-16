@@ -20,7 +20,7 @@ public class ProjetilCollider : MonoBehaviour // sistema para colisão de projé
 
         if (co.gameObject.tag == "EnemyTag")
         {
-            pd.acertouTiro(20);
+            pd.AcertouTiro(20);
             FallenScript botscript= co.gameObject.GetComponent<FallenScript>();
             if (botscript != null)
             {

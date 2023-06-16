@@ -16,7 +16,7 @@ public class RecargaDeCargas : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && touching)
         {
-            playerData.recarregarCargas();
+            playerData.RecarregarCargas();
         }
     }
 
@@ -25,7 +25,7 @@ public class RecargaDeCargas : MonoBehaviour
         if (c.gameObject.tag == "Player")
         {
             ;
-            controlador.classe_user_interface.mensagem = "Aperte F para recarregar";
+            controlador.classe_interface_usuario.mensagem = "Aperte F para recarregar";
             
             touching = true;
         }
@@ -34,7 +34,7 @@ public class RecargaDeCargas : MonoBehaviour
     {
         if (c.gameObject.tag == "Player")
         {
-            controlador.classe_user_interface.mensagem = "";
+            controlador.classe_interface_usuario.mensagem = "";
             touching = false;
         }
     }

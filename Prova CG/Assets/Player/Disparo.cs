@@ -5,25 +5,14 @@ using UnityEngine;
 public class Disparo : MonoBehaviour
 {
 
-    public static Disparo instance;
-    public Animator animatorPlayer;
 
-    public static Disparo Instance
-    {
-        get
-        {
-            if (instance == null)
-            {
-                instance = new Disparo();
-            }
-            return instance;
-        }
-    }
+
     //components
-    public Camera cam;
-    public Estrutura spell;
-    public GameObject projectile;
-    public Transform RHFirePoint;
+    private Camera cam;
+    private Estrutura spell;
+    private Transform RHFirePoint;
+    public Animator animatorPlayer;
+    
 
     //Variables
     private float cronometro;
@@ -36,7 +25,7 @@ public class Disparo : MonoBehaviour
     public void CastingSystem(Camera cam,Transform firePoint, PlayerData pd)
     {
         this.cam = cam;
-        this.spell = pd.getCurrentSpellData();
+        this.spell = pd.GetCurrentSpellData();
         this.RHFirePoint = firePoint;
 
 
@@ -48,10 +37,10 @@ public class Disparo : MonoBehaviour
         }
         else
         {
-            if (Input.GetKey(KeyCode.Mouse0) && pd.getCargas() > 0)
+            if (Input.GetKey(KeyCode.Mouse0) && pd.GetCargas() > 0)
             {
-                cronometro = 1f/ pd.getCurrentSpellData().Cadencia;
-                pd.consumirCarga();
+                cronometro = 1f/ pd.GetCurrentSpellData().Cadencia;
+                pd.ConsumirCarga();
                 this.animatorPlayer.SetBool("shooting", true);
                 HandleCasting();
             }
@@ -65,10 +54,9 @@ public class Disparo : MonoBehaviour
     private void HandleCasting()
     {
         Ray ray = this.cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
         GameObject projectileObj;
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
         {
             destination = hit.point;
             //Debug.Log("Objeto atingido: " + hit.collider.gameObject.name);
