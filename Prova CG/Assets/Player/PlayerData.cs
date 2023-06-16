@@ -28,8 +28,10 @@ public class PlayerData : MonoBehaviour
 
         magias_equipadas.Add(tm.getMagia(0));
         magias_equipadas[0].Cargas = 45;
+        magias_equipadas.Add(tm.getMagia(1));
+        magias_equipadas.Add(tm.getMagia(2));
+        magias_equipadas.Add(tm.getMagia(3));
 
-        
     }
 
     public PlayerData()
