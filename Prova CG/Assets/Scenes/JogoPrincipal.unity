@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tm: {fileID: 170932012}
+  classe_user_interface: {fileID: 1324938697}
   UIatualizada: 0
 --- !u!114 &170932012
 MonoBehaviour:
@@ -310,14 +311,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 170932007}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f67b08b10823ddf4bbd06447b5a77b47, type: 3}
+  m_Script: {fileID: 11500000, guid: 6029b8121aba22846867d1c333edfc9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magia_inicial_vfx: {fileID: 6544800294227581481, guid: b5c861d9712dae743931b48e0b3779a3, type: 3}
+  magia_inicial_vfx: {fileID: 6544800293877804059}
   lumus_vfx: {fileID: 1065140879}
   igneus_vfx: {fileID: 33092637}
   frigus_vfx: {fileID: 1736055133}
-  saxum_vfx: {fileID: 6544800294227581481, guid: fe263a9dac6f4c448b1e5f11938644eb, type: 3}
+  saxum_vfx: {fileID: 1075999695}
 --- !u!1001 &232294767
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -494,7 +495,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8408187833150039050, guid: fe263a9dac6f4c448b1e5f11938644eb, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe263a9dac6f4c448b1e5f11938644eb, type: 3}
 --- !u!4 &239668686 stripped
 Transform:
@@ -807,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af21cda362f0fc4e88e267ae328b814, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 0}
   horda: {fileID: 1142614415}
 --- !u!1 &380060731 stripped
 GameObject:
@@ -1406,7 +1408,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: vfx_lumus
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6073156652273388739, guid: e56d926ef4822e340b2e16a22f5bf09a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e56d926ef4822e340b2e16a22f5bf09a, type: 3}
 --- !u!4 &522392427 stripped
 Transform:
@@ -1534,9 +1537,7 @@ MonoBehaviour:
   - {fileID: 13523180}
   - {fileID: 567113428}
   - {fileID: 854834177}
-  isVisible: 0
-  sortingSpeed: 0
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 0}
 --- !u!1 &567113426
 GameObject:
   m_ObjectHideFlags: 0
@@ -2672,9 +2673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pd: {fileID: 170932011}
+  cam: {fileID: 1191310587}
+  RHFirePoint: {fileID: 754432324}
   animatorPlayer: {fileID: 2004563967}
-  projectileSpeed: 30
-  arcRange: 1
 --- !u!1 &1005949084
 GameObject:
   m_ObjectHideFlags: 0
@@ -2867,6 +2869,39 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6781889802563297919, guid: e56d926ef4822e340b2e16a22f5bf09a, type: 3}
   m_PrefabInstance: {fileID: 522392426}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1065140883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065140879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
+--- !u!1 &1075999695 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6544800294227581481, guid: fe263a9dac6f4c448b1e5f11938644eb, type: 3}
+  m_PrefabInstance: {fileID: 239668685}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1075999696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075999695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1088025526
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,9 +3087,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   total_fallen_nesta_horda: 0
   total_fallen_vivos: 0
-  spawner: {fileID: 1142614413}
+  invocador: {fileID: 0}
   fallen_bot: {fileID: 171086591739571965, guid: 92b56ce9e90da264cab89a51ed79dda8, type: 3}
   player: {fileID: 2004563947}
+  classe_interface_usuario: {fileID: 0}
 --- !u!1 &1183002940
 GameObject:
   m_ObjectHideFlags: 0
@@ -3501,8 +3537,6 @@ MonoBehaviour:
   objetoInteracao: {fileID: 1512837174}
   ferimento: {fileID: 629427776}
   pd: {fileID: 170932011}
-  horda: {fileID: 1142614415}
-  mensagem: 
 --- !u!1001 &1340637248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4333,7 +4367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbebd9f66a9a90449831077894ffee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlador: {fileID: 2004563962}
+  classe_interface_usuario: {fileID: 1324938697}
   playerData: {fileID: 170932011}
 --- !u!1 &1683483357
 GameObject:
@@ -4613,7 +4647,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8408187833150039050, guid: 852948c8c13a9ac4398966fa3273f930, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 852948c8c13a9ac4398966fa3273f930, type: 3}
 --- !u!4 &1736055132 stripped
 Transform:
@@ -4625,6 +4660,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6544800294227581481, guid: 852948c8c13a9ac4398966fa3273f930, type: 3}
   m_PrefabInstance: {fileID: 1736055131}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1736055137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1736055133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1751193914
 GameObject:
   m_ObjectHideFlags: 0
@@ -4988,13 +5037,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8408187833150039050, guid: ddf94bd82be257945a405be31fba6d46, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ddf94bd82be257945a405be31fba6d46, type: 3}
 --- !u!4 &1891029445 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6544800294227581486, guid: ddf94bd82be257945a405be31fba6d46, type: 3}
   m_PrefabInstance: {fileID: 1891029444}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1891029449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 33092637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1939738982
 GameObject:
   m_ObjectHideFlags: 0
@@ -5610,18 +5674,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2539b68dc19487a40a3e3055df24cc4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  classe_interface_usuario: {fileID: 1324938697}
   classe_visao: {fileID: 1183002942}
   classe_movimento: {fileID: 1779126099}
   classe_disparo: {fileID: 956823068}
-  todas_as_magias: {fileID: 170932012}
+  todas_as_magias: {fileID: 0}
   jogador_objeto: {fileID: 2004563947}
   camera_objeto: {fileID: 1191310582}
   ponto_de_disparo: {fileID: 754432323}
-  player_CA: {fileID: 2004563967}
-  camera_CA: {fileID: 1191310589}
   pd: {fileID: 170932011}
-  horda: {fileID: 1142614415}
 --- !u!136 &2004563966
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6113,9 +6173,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eea453a1624e48448501fedb921838a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactoVFX: {fileID: 132914871598233692}
-  audioPlayer: {fileID: 380060731}
-  pd: {fileID: 170932011}
 --- !u!4 &6544800293877804067 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6544800294227581486, guid: b5c861d9712dae743931b48e0b3779a3, type: 3}
