@@ -21,11 +21,9 @@ namespace Player
         public GameObject camera_objeto;
         public GameObject ponto_de_disparo;
         //public Animator player_CA;
-        public Animator camera_CA;
         public PlayerData pd;
-        public Horda horda;
         /*---------------------------------------------*/
-        private Camera camera_componente;
+
         private readonly KeyCode tecla_de_ferimento = KeyCode.Tab;
         /*---------------------------------------------*/
 
@@ -33,8 +31,6 @@ namespace Player
         {
             pd.Inicializar();
             Cursor.lockState = CursorLockMode.Locked;
-            camera_componente = camera_objeto.GetComponent<Camera>();
-
             //classe_disparo.animatorPlayer = player_CA;
         }
 
@@ -48,22 +44,25 @@ namespace Player
 
         void Update()
         {
+
+            //Se ele estiver vivo, executa estas funções, senão, roda animação de morte
             if (pd.JogadorVivo())
             {
-                classe_movimento.SistemaDeCorrida();
-                pd.SistemaDeTrocaDeMagias();
-                classe_visao.CameraSystem(jogador_objeto.transform, camera_objeto.transform);
-                classe_disparo.CastingSystem(camera_componente, ponto_de_disparo.transform, pd);
-
-                if (Input.GetKeyDown(tecla_de_ferimento))
-                {
-                    pd.TomouDano();
-                }
+                AtivarFuncoes();   
             }
             else
             {
-                camera_CA.SetBool("dead", true);
+                var cam_animator=camera_objeto.GetComponent<Animator>();
+                cam_animator.SetBool("dead", true);
             }
+
+
+            if (Input.GetKeyDown(tecla_de_ferimento))
+            {
+                pd.TomouDano();
+            }
+
+
         }
 
         private void OnCollisionEnter(Collision c)
@@ -86,6 +85,13 @@ namespace Player
             if (c.collider.CompareTag("GroundTag")) {
                 classe_movimento.SetGrounded(false);
             }
+        }
+        public void AtivarFuncoes()
+        {
+            classe_movimento.SistemaDeCorrida();
+            pd.SistemaDeTrocaDeMagias();
+            classe_visao.CameraSystem(jogador_objeto.transform, camera_objeto.transform);
+            classe_disparo.CastingSystem();
         }
 
     }

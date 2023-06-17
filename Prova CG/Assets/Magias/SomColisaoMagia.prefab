@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2754858722751137673}
   - component: {fileID: 2754858722751137672}
   m_Layer: 0
-  m_Name: ObjectCollided
+  m_Name: SomColisaoMagia
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
