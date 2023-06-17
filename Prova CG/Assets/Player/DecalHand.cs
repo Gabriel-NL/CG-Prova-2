@@ -5,7 +5,8 @@ public class DecalHand : MonoBehaviour
 {
     public List<Texture2D> symbolTextures;
     public List<KeyCode> symbolKeys;
-    public Projector symbolProjector;
+    public GameObject decalPrefab;
+    public Transform decalContainer;
 
     private Dictionary<KeyCode, Texture2D> symbolMap = new Dictionary<KeyCode, Texture2D>();
 
@@ -27,8 +28,17 @@ public class DecalHand : MonoBehaviour
         {
             if (Input.GetKeyDown(key))
             {
-                // Define a textura do decal para o símbolo correspondente à tecla pressionada
-                symbolProjector.material.SetTexture("_Texture", symbolMap[key]);
+                // Cria um novo decal
+                GameObject decal = Instantiate(decalPrefab, decalContainer);
+                decal.transform.position = transform.position;
+                decal.transform.rotation = transform.rotation;
+
+                // Aplica a textura do símbolo no material do decal
+                MeshRenderer decalRenderer = decal.GetComponent<MeshRenderer>();
+                decalRenderer.material.SetTexture("_MainTex", symbolMap[key]);
+
+                // Ajusta a escala, rotação ou qualquer outra propriedade do decal, se necessário
+
                 break;
             }
         }
