@@ -4,34 +4,43 @@ using UnityEngine.UI;
 
 public class HandSymbol : MonoBehaviour
 {
-    public List<Texture2D> symbolTextures;
-    public List<RawImage> symbolRawImages;
+    public List<Sprite> symbolSprites;
+    public List<RectTransform> symbolImages;
     public Transform playerHand;
 
-    private int currentTextureIndex = 0;
+    private int currentSymbolIndex = 0;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
-            currentTextureIndex = 0;
+            currentSymbolIndex = 0;
         else if (Input.GetKeyDown(KeyCode.Alpha2))
-            currentTextureIndex = 1;
+            currentSymbolIndex = 1;
         else if (Input.GetKeyDown(KeyCode.Alpha3))
-            currentTextureIndex = 2;
+            currentSymbolIndex = 2;
         else if (Input.GetKeyDown(KeyCode.Alpha4))
-            currentTextureIndex = 3;
+            currentSymbolIndex = 3;
 
-        // Atualiza as RawImages com base no índice da textura selecionada
-        if (currentTextureIndex >= 0 && currentTextureIndex < symbolTextures.Count)
+        // Atualiza as imagens com base no índice do símbolo selecionado
+        if (currentSymbolIndex >= 0 && currentSymbolIndex < symbolSprites.Count)
         {
-            Texture2D selectedTexture = symbolTextures[currentTextureIndex];
-            foreach (RawImage rawImage in symbolRawImages)
+            Sprite selectedSprite = symbolSprites[currentSymbolIndex];
+            foreach (RectTransform symbolImage in symbolImages)
             {
-                rawImage.texture = selectedTexture;
+                symbolImage.gameObject.SetActive(true);
+                symbolImage.GetComponent<Image>().sprite = selectedSprite;
 
-                // Define a posição da RawImage próxima à posição da mão do jogador
-                rawImage.transform.position = playerHand.position;
-                rawImage.transform.rotation = playerHand.rotation;
+
+                // Define a posição e a rotação da imagem próxima à posição da mão do jogador
+                symbolImage.position = playerHand.position;
+                symbolImage.rotation = playerHand.rotation;
+            }
+        }
+        else
+        {
+            foreach (RectTransform symbolImage in symbolImages)
+            {
+                symbolImage.gameObject.SetActive(false);
             }
         }
     }
