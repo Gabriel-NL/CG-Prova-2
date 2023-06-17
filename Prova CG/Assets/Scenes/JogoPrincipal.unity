@@ -2673,9 +2673,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 0}
-  cam: {fileID: 0}
-  RHFirePoint: {fileID: 0}
+  pd: {fileID: 170932011}
+  cam: {fileID: 1191310587}
+  RHFirePoint: {fileID: 754432324}
   animatorPlayer: {fileID: 2004563967}
 --- !u!1 &1005949084
 GameObject:
@@ -2878,13 +2878,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065140879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 170932011}
-  cam: {fileID: 1191310587}
-  RHFirePoint: {fileID: 754432324}
-  animatorPlayer: {fileID: 754432327}
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1075999695 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6544800294227581481, guid: fe263a9dac6f4c448b1e5f11938644eb, type: 3}
@@ -2899,13 +2897,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075999695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 170932011}
-  cam: {fileID: 1191310587}
-  RHFirePoint: {fileID: 754432324}
-  animatorPlayer: {fileID: 754432327}
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1088025526
 GameObject:
   m_ObjectHideFlags: 0
@@ -4673,13 +4669,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1736055133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 170932011}
-  cam: {fileID: 1191310587}
-  RHFirePoint: {fileID: 754432324}
-  animatorPlayer: {fileID: 754432327}
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1751193914
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,13 +5054,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 33092637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0314fad457b864787f384a02c828ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f2b21c9cd2a2da43aabdcdf2d6a156a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pd: {fileID: 170932011}
-  cam: {fileID: 1191310587}
-  RHFirePoint: {fileID: 754432324}
-  animatorPlayer: {fileID: 754432327}
+  impactoVFX: {fileID: 132914871598233692}
+  audioPlayer: {fileID: 380060731}
 --- !u!1 &1939738982
 GameObject:
   m_ObjectHideFlags: 0
