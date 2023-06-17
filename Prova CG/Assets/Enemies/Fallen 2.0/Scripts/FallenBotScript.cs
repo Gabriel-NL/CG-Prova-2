@@ -22,10 +22,6 @@ public class FallenBotScript : MonoBehaviour
         {
             grounded = true;
         }
-        if (c.gameObject.tag == "Spell")
-        {
-            //Destroy(fallen);
-        };
     }
 
     //Quando tocar no ch�o, grounded se torna falso

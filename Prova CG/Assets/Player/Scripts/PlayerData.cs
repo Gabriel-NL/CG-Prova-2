@@ -56,7 +56,7 @@ public class PlayerData : MonoBehaviour
     public void AcertouTiro(int quantia_pontos)
     {
         this.pontosDeDevocao += quantia_pontos;
-        classe_user_interface.AtualizarPontos(quantia_pontos);
+        classe_user_interface.AtualizarPontos(this.pontosDeDevocao);
     }
 
     public int GetPontosDevocao()

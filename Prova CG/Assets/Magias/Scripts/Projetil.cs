@@ -36,7 +36,7 @@ public class Projetil : MonoBehaviour // sistema para colisão de projéteis e o
             if (c.gameObject.GetComponent<FallenScript>() != null)
             {
                 botscript = c.gameObject.GetComponent<FallenScript>();
-                botscript.pontosDeVida-= tipo.Dano;
+                botscript.RecebendoDano(tipo.Dano);
 
                 audioSource.Play();
                 Destroy(soundInstance, audioSource.clip.length);
