@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 namespace Player
@@ -45,7 +46,7 @@ namespace Player
         void Update()
         {
 
-            //Se ele estiver vivo, executa estas funções, senão, roda animação de morte
+            //Se ele estiver vivo, executa estas funï¿½ï¿½es, senï¿½o, roda animaï¿½ï¿½o de morte
             if (pd.JogadorVivo())
             {
                 AtivarFuncoes();   
@@ -54,6 +55,8 @@ namespace Player
             {
                 var cam_animator=camera_objeto.GetComponent<Animator>();
                 cam_animator.SetBool("dead", true);
+
+                Invoke("RetonarTelaInicial", 3f);
             }
 
 
@@ -65,6 +68,11 @@ namespace Player
 
         }
 
+        void RetonarTelaInicial()
+        {
+            SceneManager.LoadScene("TelaInicial");
+        }
+        
         private void OnCollisionEnter(Collision c)
         {
             //Se jogador tocar no chao, esta condincao e ativada
