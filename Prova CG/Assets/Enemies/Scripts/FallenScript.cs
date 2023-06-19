@@ -64,7 +64,7 @@ public class FallenScript : MonoBehaviour {
         {
             animator.SetBool("tocando_player", true);
             animator.SetBool("correr", false);
-            animator.SetTrigger("atacar");
+            animator.SetBool("atacar",true);
             navMesh.isStopped = true;
             navMesh.velocity = Vector3.zero;
 
@@ -118,10 +118,11 @@ public class FallenScript : MonoBehaviour {
 
             Debug.Log("AtacandoDenovo");
             animator.SetBool("correr", false);
-            animator.SetTrigger("atacar");
+            animator.SetBool("atacar", true);
         }
         else
         {
+            animator.SetBool("atacar", false);
             animator.SetBool("correr", true);
             navMesh.isStopped = false;
             Debug.Log("Andando");
