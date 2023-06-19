@@ -10,7 +10,6 @@ public class FallenScript : MonoBehaviour {
     private int pontosDeVida = 6;
     private float stoppingDistance = 2.4f;
     private bool grounded = false;
-
     private float distance;
 
     //Scripts
@@ -125,7 +124,6 @@ public class FallenScript : MonoBehaviour {
             animator.SetBool("atacar", false);
             animator.SetBool("correr", true);
             navMesh.isStopped = false;
-            Debug.Log("Andando");
         }
     }
 }
