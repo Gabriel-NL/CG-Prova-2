@@ -15,21 +15,45 @@ public class PlantaCarnivora : MonoBehaviour
     private bool isChangingImage;
     private float sortingSpeed = 0f;
 
+    private bool magiaPronta;
+    private int magiaAtual=0;
+
     //Scripts
-    public UI classe_interface_usuario;
+    public PlayerData pd;
 
     private void Start()
     {
         // Initially set the transparency of the image to 0 (invisible)
         SetImageTransparency(0f);
+        magiaPronta = false;
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.F))
         {
+
+            if (magiaPronta)
+            {
+                pd.PegarMagiaNova(magiaAtual);
+
+            }
+            else
+            {
+                if (pd.GetPontosDevocao() >= 190)
+                {
+                    MagiaAleatoria();
+                }
+                else
+                {
+                    Debug.Log("Você não tem pontos o suficiente!");
+                }
+
+
+            }
             // Trigger the "MagiaAleatoria" function when F key is held down
-            MagiaAleatoria();
+
+            
         }
     }
 
@@ -38,7 +62,15 @@ public class PlantaCarnivora : MonoBehaviour
         if (c.collider.CompareTag("Player"))
         {
             // Set the visibility flag to true when collision with the jogador_objeto occurs
-            classe_interface_usuario.AtualizarNomeMensagem("Gerar magia aleatória");
+            pd.classe_interface_usuario.AtualizarMensagem("Gerar magia aleatória");
+            isVisible = true;
+
+        }
+
+        if (c.collider.CompareTag("Player") && magiaPronta)
+        {
+            // Set the visibility flag to true when collision with the jogador_objeto occurs
+            pd.classe_interface_usuario.AtualizarMensagem("Segure F para equipar "+ pd.tm.getMagia(magiaAtual).Nome);
             isVisible = true;
 
         }
@@ -47,7 +79,7 @@ public class PlantaCarnivora : MonoBehaviour
     private void OnCollisionExit(Collision c)
     {
         if (c.collider.CompareTag("Player")){
-            classe_interface_usuario.AtualizarNomeMensagem("");
+            pd.classe_interface_usuario.AtualizarMensagem("");
             isVisible = false;
         }
     }
@@ -64,7 +96,7 @@ public class PlantaCarnivora : MonoBehaviour
         isChangingImage = true;
 
         // Set the initial sorting speed
-        sortingSpeed = 6;
+        sortingSpeed = 5;
 
         // Start sorting the image options
         SetImageTransparency(1f);
@@ -73,23 +105,22 @@ public class PlantaCarnivora : MonoBehaviour
 
     private IEnumerator SortImages()
     {
-        int currentIndex = 0;
 
         // Keep sorting the images until the sorting speed reaches 0
         while (sortingSpeed > 0f)
         {
             // Randomly select the next index (excluding the current index)
             int nextIndex = Random.Range(0, imageOptions.Length - 1);
-            if (nextIndex >= currentIndex)
+            if (nextIndex >= magiaAtual)
             {
                 nextIndex++;
             }
 
             // Set the current index to the next index
-            currentIndex = nextIndex;
+            magiaAtual = nextIndex;
 
             // Change the sprite of the image to the current index option
-            floatingImage.texture = imageOptions[currentIndex].texture;
+            floatingImage.texture = imageOptions[magiaAtual].texture;
 
             // Gradually slow down the sorting speed
             sortingSpeed -= (Time.deltaTime);
@@ -98,12 +129,17 @@ public class PlantaCarnivora : MonoBehaviour
         }
 
         // Set the final image to the target index
-        floatingImage.texture = imageOptions[currentIndex].texture;
-
+        floatingImage.texture = imageOptions[magiaAtual].texture;
+        magiaPronta = true;
         // Set the changing image flag to false
         isChangingImage = false;
 
         // Set the transparency of the image to 1 (fully visible)
+    }
+
+    public void PegarMagia()
+    {
+
     }
 
     private void SetImageTransparency(float transparency)

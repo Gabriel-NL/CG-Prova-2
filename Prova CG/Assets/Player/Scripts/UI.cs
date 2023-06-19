@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Unity.VisualScripting;
 
 public class UI : MonoBehaviour
 {
@@ -14,6 +14,9 @@ public class UI : MonoBehaviour
     public TMP_Text objetoNome;
     public TMP_Text objetoInteracao;
     public Image ferimento;
+
+    //Debug
+    public float controle=0.1f;
 
     //Scripts
     public PlayerData pd;
@@ -33,7 +36,7 @@ public class UI : MonoBehaviour
         objetoNome.text = nome;
     }
 
-    public void AtualizarNomeMensagem(string mensagem)
+    public void AtualizarMensagem(string mensagem)
     {
         objetoInteracao.text = mensagem;
     }
@@ -46,34 +49,36 @@ public class UI : MonoBehaviour
 
     public void HealthSystem(int vida)
     {
+                Color tempColor = ferimento.color;
 
-        
-        if (vida==3)
+        switch (vida)
         {
-            var tempColor = ferimento.color;
-            tempColor.a = 0;
-            ferimento.color = tempColor;
+
+            case 3:
+                tempColor.a = 0f;
+                ferimento.color = tempColor;
+
+                break;
+
+            case 2:
+                tempColor.a = 0.2f;
+                ferimento.color = tempColor;
+
+                break;
+            case 1:
+                tempColor.a = 0.5f;
+                ferimento.color = tempColor;
+
+                break;
+
+            default:
+                Debug.Log("Ops");
+                tempColor.a = 1f;
+                ferimento.color = tempColor;
+
+                break;
         }
 
-        if (vida==2)
-        {
-            var tempColor = ferimento.color;
-            tempColor.a = 0.2f;
-            ferimento.color = tempColor;
-        }
-        if (vida == 1)
-        {
-            var tempColor = ferimento.color;
-            tempColor.a = 0.5f;
-            ferimento.color = tempColor;
-        }
-
-        if (vida >= 0)
-        {
-            var tempColor = ferimento.color;
-            tempColor.a = 1f;
-            ferimento.color = tempColor;
-        }
 
     }
 

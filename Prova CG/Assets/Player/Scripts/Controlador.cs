@@ -32,6 +32,7 @@ namespace Player
         {
             pd.Inicializar();
             Cursor.lockState = CursorLockMode.Locked;
+           
             //classe_disparo.animatorPlayer = player_CA;
         }
 
@@ -52,17 +53,11 @@ namespace Player
                 AtivarFuncoes();   
             }
             else
-            {
+            {   
                 var cam_animator=camera_objeto.GetComponent<Animator>();
                 cam_animator.SetBool("dead", true);
 
                 Invoke("RetonarTelaInicial", 3f);
-            }
-
-
-            if (Input.GetKeyDown(tecla_de_ferimento))
-            {
-                pd.TomouDano();
             }
 
 

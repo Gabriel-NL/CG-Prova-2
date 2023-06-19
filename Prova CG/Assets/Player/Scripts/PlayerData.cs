@@ -8,12 +8,11 @@ public class PlayerData : MonoBehaviour
 
     //Scripts
     public TodasAsMagias tm;
-    public UI classe_user_interface;
+    public UI classe_interface_usuario;
 
     //Variaveis
     private int vida;
     private int pontosDeDevocao;
-    public bool UIatualizada;
 
     //Inventario
     private int magia_atual;
@@ -21,24 +20,24 @@ public class PlayerData : MonoBehaviour
 
     public void Inicializar()
     {
+        
         this.magia_atual = 0;
         this.vida = 3;
-        this.UIatualizada = false;
+        this.classe_interface_usuario.HealthSystem(this.vida);
+        this.classe_interface_usuario.AtualizarMensagem("");
 
         this.tm.Initialize();
 
         magias_equipadas.Add(tm.getMagia(0));
         magias_equipadas[0].Cargas = 45;
-        magias_equipadas.Add(tm.getMagia(1));
-        magias_equipadas.Add(tm.getMagia(2));
-        magias_equipadas.Add(tm.getMagia(3));
+
         
     }
 
     public void ConsumirCarga()
     {
         this.magias_equipadas[magia_atual].Cargas--; 
-        classe_user_interface.AtualizarMunicao(this.magias_equipadas[magia_atual].Cargas);
+        classe_interface_usuario.AtualizarMunicao(this.magias_equipadas[magia_atual].Cargas);
     }
 
     public int GetCargas()
@@ -50,13 +49,13 @@ public class PlayerData : MonoBehaviour
     {
         var cargas = magias_equipadas[magia_atual].MaxCargas;
         this.magias_equipadas[magia_atual].Cargas= cargas;
-        classe_user_interface.AtualizarMunicao(cargas);
+        classe_interface_usuario.AtualizarMunicao(cargas);
     }
 
     public void AcertouTiro(int quantia_pontos)
     {
         this.pontosDeDevocao += quantia_pontos;
-        classe_user_interface.AtualizarPontos(this.pontosDeDevocao);
+        classe_interface_usuario.AtualizarPontos(this.pontosDeDevocao);
     }
 
     public int GetPontosDevocao()
@@ -67,7 +66,7 @@ public class PlayerData : MonoBehaviour
     public void TomouDano()
     {
         this.vida--;
-        classe_user_interface.HealthSystem(this.vida);
+        classe_interface_usuario.HealthSystem(this.vida);
     }
 
 
@@ -118,7 +117,7 @@ public class PlayerData : MonoBehaviour
 
         try
         {
-            classe_user_interface.AtualizarNomeMagia(magias_equipadas[this.magia_atual].Nome);
+            classe_interface_usuario.AtualizarNomeMagia(magias_equipadas[this.magia_atual].Nome);
             return magias_equipadas[this.magia_atual];
         }
         catch (ArgumentOutOfRangeException ex)
@@ -128,6 +127,11 @@ public class PlayerData : MonoBehaviour
             this.magia_atual = 0;
             return magias_equipadas[this.magia_atual];
         }
+    }
+
+    public void Debugando()
+    {
+        classe_interface_usuario.HealthSystem(this.vida);
     }
 
 }
