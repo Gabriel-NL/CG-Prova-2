@@ -52,7 +52,7 @@ public class PlayerData : MonoBehaviour
         classe_interface_usuario.AtualizarMunicao(cargas);
     }
 
-    public void AcertouTiro(int quantia_pontos)
+    public void AdicionarPontosDevocao(int quantia_pontos)
     {
         this.pontosDeDevocao += quantia_pontos;
         classe_interface_usuario.AtualizarPontos(this.pontosDeDevocao);

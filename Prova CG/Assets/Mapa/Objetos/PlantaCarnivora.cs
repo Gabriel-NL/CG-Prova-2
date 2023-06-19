@@ -14,7 +14,7 @@ public class PlantaCarnivora : MonoBehaviour
     private bool isVisible;
     private bool isChangingImage;
     private float sortingSpeed = 0f;
-    private int custo=190;
+    private int custo=19;
 
     private bool magiaPronta;
     private int magiaAtual=0;
