@@ -13,7 +13,6 @@ public class PlayerData : MonoBehaviour
     //Variaveis
     private int vida;
     private int pontosDeDevocao;
-    public bool UIatualizada;
 
     //Inventario
     private int magia_atual;
@@ -21,9 +20,11 @@ public class PlayerData : MonoBehaviour
 
     public void Inicializar()
     {
+        
         this.magia_atual = 0;
         this.vida = 3;
-        this.UIatualizada = false;
+        this.classe_user_interface.HealthSystem(this.vida);
+        this.classe_user_interface.AtualizarMensagem("");
 
         this.tm.Initialize();
 
@@ -128,6 +129,11 @@ public class PlayerData : MonoBehaviour
             this.magia_atual = 0;
             return magias_equipadas[this.magia_atual];
         }
+    }
+
+    public void Debugando()
+    {
+        classe_user_interface.HealthSystem(this.vida);
     }
 
 }

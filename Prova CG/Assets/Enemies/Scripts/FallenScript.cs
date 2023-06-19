@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Player;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,10 +8,10 @@ public class FallenScript : MonoBehaviour {
 
     //Variaveis
     private int pontosDeVida = 6;
-    public float stoppingDistance = 0f;
-    public bool grounded = false;
-    public bool tocou_player;
-    public bool pode_andar = true;
+    private float stoppingDistance = 2.4f;
+    private bool grounded = false;
+
+    private float distance;
 
     //Scripts
     public Horda horda;
@@ -18,20 +19,20 @@ public class FallenScript : MonoBehaviour {
     //Componentes
     public GameObject fallen;
     private Animator animator;
-    private GameObject player;
+    public GameObject player;
     private NavMeshAgent navMesh;
     private Rigidbody rb;
 
     //Start is called before the first frame update
     void Start() {
-        tocou_player = false;
 
-        player = GameObject.FindWithTag("Player");
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         rb= GetComponent<Rigidbody>();
         navMesh.stoppingDistance = stoppingDistance;
-        fallen = gameObject;
+        
+        animator.SetBool("correr", true);        
+        animator.SetBool("tocando_player", false);
     }
 
     public void setTarget(GameObject player) { this.player = player; }
@@ -46,27 +47,26 @@ public class FallenScript : MonoBehaviour {
         {
             rb.AddForce(Vector3.down * 30);
         }
-        if (pode_andar)
-        {
-            animator.SetBool("correr", true);
-            navMesh.isStopped = false;
-        }
-        else
-        {
 
-            navMesh.isStopped = true;
-            navMesh.velocity = Vector3.zero;
-        }
-
-        navMesh.destination = player.transform.position;
-        float distanceToTarget = Vector3.Distance(player.transform.position, transform.position);
+        navMesh.destination =
+            player.transform.position;
+        distance = Vector3.Distance(player.transform.position, transform.position);
         //Debug.Log(distanceToTarget.ToString());
 
-        if(distanceToTarget > navMesh.stoppingDistance){
+
+        if(distance > navMesh.stoppingDistance){
+            animator.SetBool("tocando_player", false);
+
+
         }
 
-        if(distanceToTarget <= navMesh.stoppingDistance){
-           
+        if(distance <= navMesh.stoppingDistance)
+        {
+            animator.SetBool("tocando_player", true);
+            animator.SetBool("correr", false);
+            animator.SetTrigger("atacar");
+            navMesh.isStopped = true;
+            navMesh.velocity = Vector3.zero;
 
         }
 
@@ -90,11 +90,7 @@ public class FallenScript : MonoBehaviour {
 
         if (c.collider.CompareTag("Player")) 
         {
-            tocou_player = true;
-            animator.SetTrigger("atacar");
-            navMesh.isStopped = true;
-            navMesh.velocity = Vector3.zero;
-            pode_andar = false;
+
         }
     }
 
@@ -105,38 +101,30 @@ public class FallenScript : MonoBehaviour {
         {
             grounded = false;
         }
-
-        if (c.collider.CompareTag("Player"))
-        {
-            tocou_player=false;
-        }
-    }
-    public void Atacar()
-    {
-        
     }
 
     public void AtacouAlvo()
     {
-        if (tocou_player)
+        if (animator.GetBool("tocando_player"))
         {
-            Debug.Log("Fallen Acertou");
-            
+            Controlador controlador= player.GetComponent<Controlador>();
+            controlador.pd.TomouDano();
         }
     }
     public void Atacando()
     {
-        if (tocou_player)
+        if (animator.GetBool("tocando_player"))
         {
 
             Debug.Log("AtacandoDenovo");
+            animator.SetBool("correr", false);
             animator.SetTrigger("atacar");
         }
         else
         {
+            animator.SetBool("correr", true);
+            navMesh.isStopped = false;
             Debug.Log("Andando");
-            pode_andar = true;
-            animator.SetBool("correr", false);
         }
     }
 }

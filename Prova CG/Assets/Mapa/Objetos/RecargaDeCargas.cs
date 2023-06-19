@@ -21,7 +21,7 @@ public class RecargaDeCargas : MonoBehaviour
     {
         if (c.collider.CompareTag("Player"))
         {
-            classe_interface_usuario.AtualizarNomeMensagem("Aperte F para recarregar");
+            classe_interface_usuario.AtualizarMensagem("Aperte F para recarregar");
             
             touching = true;
         }
@@ -30,7 +30,7 @@ public class RecargaDeCargas : MonoBehaviour
     {
         if (c.collider.CompareTag("Player"))
         {
-            classe_interface_usuario.AtualizarNomeMensagem("");
+            classe_interface_usuario.AtualizarMensagem("");
             touching = false;
         }
     }

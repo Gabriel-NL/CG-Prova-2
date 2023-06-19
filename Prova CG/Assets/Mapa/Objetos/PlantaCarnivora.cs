@@ -38,7 +38,7 @@ public class PlantaCarnivora : MonoBehaviour
         if (c.collider.CompareTag("Player"))
         {
             // Set the visibility flag to true when collision with the jogador_objeto occurs
-            classe_interface_usuario.AtualizarNomeMensagem("Gerar magia aleatória");
+            classe_interface_usuario.AtualizarMensagem("Gerar magia aleatória");
             isVisible = true;
 
         }
@@ -47,7 +47,7 @@ public class PlantaCarnivora : MonoBehaviour
     private void OnCollisionExit(Collision c)
     {
         if (c.collider.CompareTag("Player")){
-            classe_interface_usuario.AtualizarNomeMensagem("");
+            classe_interface_usuario.AtualizarMensagem("");
             isVisible = false;
         }
     }
