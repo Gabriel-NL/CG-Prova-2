@@ -63,6 +63,10 @@ public class PlayerData : MonoBehaviour
         return this.pontosDeDevocao;
     }
 
+    public void ConsumirPontosDevocao(int custo)
+    {
+        this.pontosDeDevocao-=custo;
+    }
     public void TomouDano()
     {
         this.vida--;

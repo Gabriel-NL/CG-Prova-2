@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 262.33694, g: 325.04984, b: 430.2193, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tm: {fileID: 170932012}
-  classe_interface_usuario: {fileID: 0}
+  classe_interface_usuario: {fileID: 1324938697}
 --- !u!114 &170932012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3292,7 +3292,7 @@ MonoBehaviour:
   total_fallen_nesta_horda: 0
   total_fallen_vivos: 0
   invocador: {fileID: 1142614413}
-  fallen_bot: {fileID: 481811064126753483, guid: 1f22be045ca79ad46aa040f3125ebe20, type: 3}
+  fallen_bot: {fileID: 4321809316918690708}
   player: {fileID: 1926722047}
   classe_interface_usuario: {fileID: 1324938697}
 --- !u!1 &1183002940

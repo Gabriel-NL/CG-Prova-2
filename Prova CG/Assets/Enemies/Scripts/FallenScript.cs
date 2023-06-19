@@ -72,8 +72,7 @@ public class FallenScript : MonoBehaviour {
         if (fallen.transform.position.y < -10 || this.pontosDeVida<=0)
         {
             if (this.horda != null){this.horda.FallenMorto();}
-            
-            Destroy(fallen);
+            Morte();
         }
 
 
@@ -125,5 +124,51 @@ public class FallenScript : MonoBehaviour {
             animator.SetBool("correr", true);
             navMesh.isStopped = false;
         }
+    }
+    public void Morte()
+    {
+        var deathAnimationLength = 10;
+            navMesh.isStopped = true;
+            navMesh.velocity = Vector3.zero;
+            animator.SetBool("correr", false);
+            animator.SetBool("morto",true);
+            StartCoroutine(DesaparecerAposDelay(deathAnimationLength));
+            DisableCollidersAndRigidbody(fallen.transform);
+    }
+
+    private void DisableCollidersAndRigidbody(Transform transform)
+    {
+        Collider[] colliders = transform.GetComponents<Collider>();
+        Rigidbody rigidbody = transform.GetComponent<Rigidbody>();
+
+        // Check if the transform has children
+        if (transform.childCount > 0)
+        {
+            // Disable colliders if there are children
+            foreach (var collider in colliders)
+            {
+                collider.enabled = false;
+            }
+
+            if (rigidbody != null)
+            {
+                rigidbody.isKinematic = true;
+            }
+        }
+
+        // Recursively process children with grandchildren
+        foreach (Transform child in transform)
+        {
+            if (child.childCount > 0)
+            {
+                DisableCollidersAndRigidbody(child);
+            }
+        }
+    }
+
+    private IEnumerator DesaparecerAposDelay(int delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Destroy(fallen);
     }
 }

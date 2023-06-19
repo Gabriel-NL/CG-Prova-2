@@ -14,6 +14,7 @@ public class PlantaCarnivora : MonoBehaviour
     private bool isVisible;
     private bool isChangingImage;
     private float sortingSpeed = 0f;
+    private int custo=190;
 
     private bool magiaPronta;
     private int magiaAtual=0;
@@ -40,8 +41,9 @@ public class PlantaCarnivora : MonoBehaviour
             }
             else
             {
-                if (pd.GetPontosDevocao() >= 190)
+                if (pd.GetPontosDevocao() >= custo)
                 {
+                    pd.ConsumirPontosDevocao(custo);
                     MagiaAleatoria();
                 }
                 else
