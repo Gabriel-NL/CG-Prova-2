@@ -8,8 +8,9 @@ public class FallenScript : MonoBehaviour {
 
     //Variaveis
     private int pontosDeVida = 6;
-    private float stoppingDistance = 2.4f;
+    private float stoppingDistance = 3f;
     private bool grounded = false;
+    private bool vivo = true;
     private float distance;
 
     //Scripts
@@ -18,9 +19,10 @@ public class FallenScript : MonoBehaviour {
     //Componentes
     public GameObject fallen;
     private Animator animator;
-    public GameObject player;
     private NavMeshAgent navMesh;
     private Rigidbody rb;
+    public GameObject player;
+    public Controlador controlador;
 
     //Start is called before the first frame update
     void Start() {
@@ -28,6 +30,7 @@ public class FallenScript : MonoBehaviour {
         navMesh = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
         rb= GetComponent<Rigidbody>();
+        controlador = player.GetComponent<Controlador>();
         navMesh.stoppingDistance = stoppingDistance;
         
         animator.SetBool("correr", true);        
@@ -69,11 +72,17 @@ public class FallenScript : MonoBehaviour {
 
         }
 
-        if (fallen.transform.position.y < -10 || this.pontosDeVida<=0)
+        if (vivo)
         {
-            if (this.horda != null){this.horda.FallenMorto();}
-            Morte();
+            if (fallen.transform.position.y < -10 || this.pontosDeVida <= 0)
+            {
+                vivo = false;
+                controlador.pd.AdicionarPontosDevocao(100);
+                if (this.horda != null) { this.horda.FallenMorto(); }
+                Morte();
+            }
         }
+        
 
 
     }
@@ -128,6 +137,7 @@ public class FallenScript : MonoBehaviour {
     public void Morte()
     {
         var deathAnimationLength = 10;
+            
             navMesh.isStopped = true;
             navMesh.velocity = Vector3.zero;
             animator.SetBool("correr", false);

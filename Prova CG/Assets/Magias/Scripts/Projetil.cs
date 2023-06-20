@@ -23,28 +23,33 @@ public class Projetil : MonoBehaviour // sistema para colisão de projéteis e o
 
         if (c.collider.CompareTag("EnemyTag"))
         {
-            pd.AcertouTiro(20);
-            FallenScript botscript;
+            pd.AdicionarPontosDevocao(20);
             
 
             
             if (c.gameObject.GetComponent<FallenScript>() != null)
             {
+            FallenScript botscript;
                 botscript = c.gameObject.GetComponent<FallenScript>();
-                botscript.RecebendoDano(tipo.Dano);
 
-                audioSource.Play();
+                if (c.collider.name == "mixamorig5:Head")
+                {
+                    botscript.RecebendoDano(tipo.Dano*3);
+                }
+                else
+                {
+                    botscript.RecebendoDano(tipo.Dano);
+                }
+            }
+            audioSource.Play();
                 Destroy(soundInstance, audioSource.clip.length);
 
                 var impact = Instantiate(impactoVFX, c.contacts[0].point, Quaternion.identity) as GameObject;
 
                 Destroy(impact, 2);
                 Destroy(gameObject);
-            }
-            if (c.collider.name == "mixamorig5:Head")
-            {
-                Debug.Log("Cabeça atingida");
-            }
+
+
 
         }
         if (!c.collider.CompareTag("Player") && !c.collider.CompareTag("Spell"))

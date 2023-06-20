@@ -7,11 +7,10 @@ public class Horda : MonoBehaviour
 {
 
     //Variaveis da horda
-    private float contagem=5;
-    public double total_fallen_nesta_horda=0;
-    public int total_fallen_vivos;
+    [SerializeField]private float contagem=8;
+    private double total_fallen_nesta_horda=0;
+    private int total_fallen_vivos;
     private int numero_rodada = 0;
-
 
     //Variaveis do invocador
     private bool invocadores_ativados=false;
@@ -20,14 +19,20 @@ public class Horda : MonoBehaviour
     private readonly int segundos_para_proximo_inimigo = 2;
 
     //Pegando componente
-    public GameObject invocador;
     public GameObject fallen_bot;
     public GameObject player;
     public UI classe_interface_usuario;
+    public GameObject armazem_invocacao;
+    public List<GameObject> invocadores;
 
     void Update()
     {
         Limitador();
+
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            IniciarHordas();
+        }
 
     }
 
@@ -67,22 +72,21 @@ public class Horda : MonoBehaviour
     }
     private IEnumerator ConjurarHorda()
     {
-        var posicao_invocacao = this.invocador.transform;
+        var posicao_invocacao = this.armazem_invocacao.transform;
         //Calculo SpawnInimigos
         this.total_fallen_nesta_horda = 6 + (6 * (this.numero_rodada -1) * 0.5); //6+ (6 x 0 x 0.5) = 6
 
         //Enquanto "i" for menor que o numero de inimigos nesta wave, executa o codigo abaixo
         for (int i = 0; i < this.total_fallen_nesta_horda; i++)
         {
-            //Pega a posi��o do invocador onde o script se situa
-            Vector3 pivotPosition = posicao_invocacao.position;
-
-            //Define posi��o x e z aleat�rias
-            float posX = pivotPosition.x + Random.Range(-10, 10);
-            float posZ = pivotPosition.z + Random.Range(-10, 10);
+            int randomIndex = Random.Range(0, invocadores.Count);
+            GameObject invocador_selecionado = invocadores[randomIndex];
+            
+            Vector3 pivotPosition = invocador_selecionado.transform.position;
 
             //Instancia um objeto do tipo Fallen
-            GameObject newEnemy = Instantiate(this.fallen_bot, new Vector3(posX, pivotPosition.y, posZ), Quaternion.identity);
+            GameObject newEnemy = Instantiate(this.fallen_bot, new Vector3(pivotPosition.x, pivotPosition.y, pivotPosition.z), Quaternion.identity);
+
             newEnemy.transform.SetParent(posicao_invocacao.transform, true);
             var scriptenemy = newEnemy.GetComponent<FallenScript>();
             scriptenemy.setTarget(this.player);

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 public class PlayerData : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class PlayerData : MonoBehaviour
     //Scripts
     public TodasAsMagias tm;
     public UI classe_interface_usuario;
+    public HandSymbol simbol;
 
     //Variaveis
     private int vida;
@@ -31,6 +34,9 @@ public class PlayerData : MonoBehaviour
         magias_equipadas.Add(tm.getMagia(0));
         magias_equipadas[0].Cargas = 45;
 
+        classe_interface_usuario.AtualizarMunicao(magias_equipadas[magia_atual].Cargas);
+        this.simbol.AtualizarMaterial(this.magias_equipadas[ magia_atual].tatuagem);
+
         
     }
 
@@ -52,7 +58,7 @@ public class PlayerData : MonoBehaviour
         classe_interface_usuario.AtualizarMunicao(cargas);
     }
 
-    public void AcertouTiro(int quantia_pontos)
+    public void AdicionarPontosDevocao(int quantia_pontos)
     {
         this.pontosDeDevocao += quantia_pontos;
         classe_interface_usuario.AtualizarPontos(this.pontosDeDevocao);
@@ -66,6 +72,7 @@ public class PlayerData : MonoBehaviour
     public void ConsumirPontosDevocao(int custo)
     {
         this.pontosDeDevocao-=custo;
+        classe_interface_usuario.AtualizarPontos(this.pontosDeDevocao);
     }
     public void TomouDano()
     {
@@ -95,24 +102,36 @@ public class PlayerData : MonoBehaviour
         {
             this.magia_atual = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2) && magias_equipadas.Count>1)
         {
             this.magia_atual = 1;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            this.magia_atual = 2;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            this.magia_atual = 3;
-        }
+        classe_interface_usuario.AtualizarMunicao(magias_equipadas[ magia_atual].Cargas);
+
     }
 
     public void PegarMagiaNova(int id_magia) 
-    {
+    {        
+        if (magias_equipadas.Count<2)
+        {
+            Debug.Log("Adicionando"+ tm.getMagia(id_magia).tatuagem);
+            magias_equipadas.Add(tm.getMagia(id_magia));
+        }
+        else
+        {
+            if (magias_equipadas.Contains(tm.getMagia(id_magia)))
+            {
+                Debug.Log("Ja tem a magia");
+                magias_equipadas[magia_atual].Cargas = magias_equipadas[magia_atual].MaxCargas;
+            }
+            else
+            {
+            Debug.Log("Alterando");
+                magias_equipadas[magia_atual] = tm.getMagia(id_magia);
+            }
 
-        magias_equipadas.Add(tm.getMagia(id_magia));
+        }
+
     }
 
 
@@ -122,6 +141,7 @@ public class PlayerData : MonoBehaviour
         try
         {
             classe_interface_usuario.AtualizarNomeMagia(magias_equipadas[this.magia_atual].Nome);
+            simbol.AtualizarMaterial(this.magias_equipadas[magia_atual].tatuagem);
             return magias_equipadas[this.magia_atual];
         }
         catch (ArgumentOutOfRangeException ex)
@@ -129,6 +149,7 @@ public class PlayerData : MonoBehaviour
             Debug.Log("Voce não tem outra magia! Erro de nome: " + ex);
 
             this.magia_atual = 0;
+            simbol.AtualizarMaterial(this.magias_equipadas[magia_atual].tatuagem);
             return magias_equipadas[this.magia_atual];
         }
     }
