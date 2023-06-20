@@ -8,7 +8,7 @@ public class FallenScript : MonoBehaviour {
 
     //Variaveis
     private int pontosDeVida = 6;
-    private float stoppingDistance = 2.4f;
+    private float stoppingDistance = 3f;
     private bool grounded = false;
     private bool vivo = true;
     private float distance;
